@@ -27,30 +27,34 @@ var db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 var Schema = mongoose.Schema;
 
-var SomeModelSchema = new Schema({
+var fileArray = new Schema({
+  bank:Array
+});
+
+
+
+var picModel = new Schema({
   name: String,
-  fileBank: Array,
   link: String,
+  id: Number
 });
 
 // Save the new model instance, passing a callback
-
 // app.use(express.static(path.join(__dirname, 'build')))
 app.use(express.static(path.join(__dirname, "img")));
 app.use("/fileupload", express.static("img"));
 app.use(express.static(__dirname + "/public"));
 const testFolder = "img";
 
-fs.readdir(testFolder, (err, files) => {
-  var SomeModel = mongoose.model("SomeModel", SomeModelSchema);
-  // Create an instance of model SomeModel
-  var awesome_instance = new SomeModel({
-    name: "benis",
-    fileBank: files,
-  });
-  awesome_instance.save();
-  // console.log(files);
-});
+// fs.readdir(testFolder, (err, files) => {
+//   var SomeModel = mongoose.model("fileArray", fileArray);
+//   // Create an instance of model SomeModel
+//   var awesome_instance = new SomeModel({
+//     bank: files,
+//   });
+//   awesome_instance.update();
+//   // console.log(files);
+// });
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
@@ -89,7 +93,7 @@ console.log("Server Started on " + exPORT);
 // const arrayOfFiles = fs.readdirSync("../FileServer/img")
 // var fs = require('fs');
 
-let counter = 0;
+var counter = 0;
 app
   .post("/fileupload", function (req, res) {
     // date stamp var
@@ -109,13 +113,23 @@ app
           if (err) throw err;
           var newSlice = newpath.slice(5);
           console.log(newSlice);
-          var SomeModel = mongoose.model("SomeModel", SomeModelSchema);
+          var SomeModel = mongoose.model("picModel", picModel);
           var dinus = newSlice.slice(1);
           console.log(dinus);
           // Create an instance of model SomeModel
           var awesome_instance = new SomeModel({
             name: dinus,
             link: newSlice,
+            id:counter
+          });
+          var bynus = mongoose.model("fileArray", fileArray);
+
+        
+
+          bynus.update(
+            {$push:{bank:newSlice}}, 
+            function(err, res){
+            console.log('bank updated')
           });
           awesome_instance.save();
           res.write(
@@ -132,7 +146,7 @@ app
               `<h2>Your wallpaper has been uploaded, it will show up on the 
 <a href="https://dinguswallpapermassiv.herokuapp.com/">homepage</a> 
 in yonks mate!</h2> <div id="newSlice">
-<img src=${newSlice}><a href=${newSlice}>${dinus}</a></img>
+<img src=${newSlice}><a href=${newSlice}>${dinus}+${counter}</a></img>
 </body>
 </html>
 `
