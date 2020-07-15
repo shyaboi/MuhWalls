@@ -24,6 +24,7 @@
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d build"
   },
+  "heroku-run-build-script": true,
   "eslintConfig": {
     "extends": "react-app"
   },
