@@ -1,6 +1,6 @@
 
 
-const links = ["/Walls16.jpg","/Walls16.jpg","/Walls16.jpg","/Walls16.jpg","/Walls16.jpg","/Walls16.jpg"]
+const links = ["Walls391489384080308.jpg","Walls391489384080308.jpg","Walls391489384080308.jpg","Walls391489384080308.jpg","Walls391489384080308.jpg","Walls391489384080308.jpg",]
 
 for (link of links) {
     document.getElementById('pix').innerHTML += `<div>
