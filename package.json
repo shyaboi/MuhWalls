@@ -21,7 +21,6 @@
   "homepage": "https://shyaboi/github.io/wallpapers",
   "scripts": {
     "start": "node server.js --open",
-    "build": "webpack",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d build"

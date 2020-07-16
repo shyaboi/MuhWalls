@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+
+    <link rel="stylesheet" href="/css/style.css">
     <a href="/upload">upload</a>
-    <div id="pix">picpox</div>
-</body>
-<script src="./index.js"></script>
-</html>
+    <div id="pix">
+{{# each ok}}
+<a href={{this}} id="picBox">
+<img src={{this}}  alt="" />{{this}}
+</a>
+{{/each}}
+</div>

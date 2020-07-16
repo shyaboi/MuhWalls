@@ -12,7 +12,7 @@ const exPORT = process.env.PORT || 8080;
 require("dotenv").config();
 const donus = process.env.MONGO_THING;
 var fs = require('fs');
-var arrayOfFiles = fs.readdirSync("./img")
+
 exports.arrayOfFiles = arrayOfFiles;
 const mongoDB = `mongodb+srv://shyaboi:${donus}@wallpapercluster.zqw64.mongodb.net/doonus?retryWrites=true&w=majority`;
 var exphbs  = require('express-handlebars');
@@ -26,6 +26,7 @@ mongoose.connect(mongoDB, { useNewUrlParser: true });
 
 //Get the default connection
 var db = mongoose.connection;
+
 
 //Bind connection to error event (to get notification of connection errors)
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
@@ -45,18 +46,35 @@ var picModel = new Schema({
 
 // Save the new model instance, passing a callback
 app.use(express.static(path.join(__dirname, 'views')));
+app.use(express.static(path.join(__dirname, '/public')));
+
 
 app.use(express.static(path.join(__dirname, "img")));
 app.use("/fileupload", express.static("img"));
 app.use("/donus", express.static("img"));
 app.use(express.static(__dirname + "/public"));
-const testFolder = "img";
+app.use(express.static(__dirname + "./public"));
+app.use(express.static(__dirname + "/public/css"));
 
 
+app.get('/css/styles.css', function(req, res){ res.send('css/styles.css'); res.end(); });
+
+var arrayOfFiles = fs.readdirSync("./img")
 
 app.get("/", (req, res) => {
-  res.render('home');
+  const ok = arrayOfFiles
+  // console.log(ok)
+
+   res.render('home', {ok: ok});
 });
+
+app.get("/benis", function(req, res) {
+          var Modal = mongoose.model("fileArray", fileArray);
+const osa = Modal.find({ bank: "Walls"});
+console.log(osa)
+  });
+
+
 
 router.get(["/", "//*"], function (req, res, next) {
   res.sendFile(path.join(__dirname, "index.html"));
@@ -66,7 +84,7 @@ router.get(["/", "//*"], function (req, res, next) {
 
 app.get("/upload", (req, res) => {
   res.writeHead(200, { "Content-Type": "text/html" });
-  res.write('<link rel="stylesheet" href="style.css">');
+  res.write('<link rel="stylesheet" href="/style.css">');
 
   res.write(
     '<form action="fileupload" id="upladContainer" method="post" enctype="multipart/form-data">'
@@ -108,11 +126,11 @@ app
           if (err) throw err;
           var newSlice = newpath.slice(5);
           console.log(newSlice);
-          var SomeModel = mongoose.model("picModel", picModel);
+          var Model = mongoose.model("picModel", picModel);
           var dinus = newSlice.slice(1);
           console.log(dinus);
-          // Create an instance of model SomeModel
-          var awesome_instance = new SomeModel({
+          // Create an instance of model Model
+          var awesome_instance = new Model({
             name: dinus,
             link: newSlice,
             id:counter

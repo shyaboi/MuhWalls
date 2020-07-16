@@ -4,14 +4,14 @@ body{
 }
 
 img{
-   height: 100%;
-   width: 100%;
+    height: 100%;
+    width: 100%;
 }
 
 
 
 #pix{
-    margin: 1em;
+    margin: .5em;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -33,26 +33,28 @@ background-color: #000;
 
 
 #picBox{
-    height: 25%;
-    width: 25%;
+    position: relative;
+height: 10vw;
+width: 15vw;
     -webkit-box-shadow: 0 2px 9px 5px rgba(41, 41, 40, 1);
     -moz-box-shadow: 0 2px 9px 5px rgba(41, 41, 40, 1);
     box-shadow: 0 2px 9px 5px rgba(41, 41, 40, 1);
     align-items: center;
+    padding-bottom:8vw;
     margin-left: 1em;
     margin-top: 1em;
     margin-bottom: 1em;
     word-wrap: break-word;
-    font-size: 2vw;
+    font-size: 1.5vw;
     
 }
 
 @media (max-width: 768px) {
 #picBox {
-    height: 100%;
-    width: 100%;
+    height: 50vw;
+    width: 100vw;
     margin: 0;
-    padding: 1em;
+    padding: 2em 2em 6em 2em;
     font-size: 3.5vw;
   }
 }
