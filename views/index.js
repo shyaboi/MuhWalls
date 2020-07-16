@@ -1,5 +1,5 @@
-
-
+// console.log({ok})
+// console.log(arrayOfFiles)
 const links = ["Walls391489384080308.jpg","Walls391489384080308.jpg"]
 
 for (link of links) {

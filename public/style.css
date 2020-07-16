@@ -44,7 +44,7 @@ background-color: #000;
     margin-bottom: 1em;
     word-wrap: break-word;
     font-size: 2vw;
-    text-decoration: none;
+    
 }
 
 @media (max-width: 768px) {

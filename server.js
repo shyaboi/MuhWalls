@@ -3,7 +3,7 @@ var formidable = require("formidable");
 var fs = require("fs");
 var path = require("path");
 var express = require("express");
-var app = express();
+var app = express(); 
 var router = express.Router();
 const { MongoClient } = require("mongodb");
 var PORT = process.env.port || 4000;
@@ -11,9 +11,13 @@ const homePORT = process.env.PORT || 3000;
 const exPORT = process.env.PORT || 8080;
 require("dotenv").config();
 const donus = process.env.MONGO_THING;
-// const uri = `mongodb+srv://shyaboi:${donus}@wallpapercluster.zqw64.mongodb.net/test?retryWrites=true&w=majority`;
+var fs = require('fs');
+var arrayOfFiles = fs.readdirSync("./img")
+exports.arrayOfFiles = arrayOfFiles;
 const mongoDB = `mongodb+srv://shyaboi:${donus}@wallpapercluster.zqw64.mongodb.net/doonus?retryWrites=true&w=majority`;
-
+var exphbs  = require('express-handlebars');
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
 //Import the mongoose module
 var mongoose = require("mongoose");
 
@@ -40,32 +44,25 @@ var picModel = new Schema({
 });
 
 // Save the new model instance, passing a callback
-// app.use(express.static(path.join(__dirname, 'build')))
+app.use(express.static(path.join(__dirname, 'views')));
+
 app.use(express.static(path.join(__dirname, "img")));
 app.use("/fileupload", express.static("img"));
+app.use("/donus", express.static("img"));
 app.use(express.static(__dirname + "/public"));
 const testFolder = "img";
 
-// fs.readdir(testFolder, (err, files) => {
-//   var SomeModel = mongoose.model("fileArray", fileArray);
-//   // Create an instance of model SomeModel
-//   var awesome_instance = new SomeModel({
-//     bank: files,
-//   });
-//   awesome_instance.update();
-//   // console.log(files);
-// });
+
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.render('home');
 });
 
 router.get(["/", "//*"], function (req, res, next) {
   res.sendFile(path.join(__dirname, "index.html"));
 });
-// app.get('/', (req, res) => {
-//   res.redirect('http://localhost:'+homePORT)
-// })
+
+
 
 app.get("/upload", (req, res) => {
   res.writeHead(200, { "Content-Type": "text/html" });
@@ -84,14 +81,12 @@ app.get("/upload", (req, res) => {
 });
 
 app.get("/donus", (req, res) => {
-  res.send("bigoofs");
+res.json(`${arrayOfFiles}`)
 });
 
 app.listen(exPORT);
 console.log("Server Started on " + exPORT);
 
-// const arrayOfFiles = fs.readdirSync("../FileServer/img")
-// var fs = require('fs');
 
 var counter = 0;
 app
@@ -127,7 +122,7 @@ app
         
 
           bynus.update(
-            {$push:{bank:newSlice}}, 
+            {$push:{bank:dinus}}, 
             function(err, res){
             console.log('bank updated')
           });
