@@ -12,6 +12,9 @@ const exPORT = process.env.PORT || 8080;
 require("dotenv").config();
 const donus = process.env.MONGO_THING;
 var fs = require("fs");
+var ExifImage = require('exif').ExifImage;
+ 
+
 
 exports.arrayOfFiles = arrayOfFiles;
 const mongoDB = `mongodb+srv://shyaboi:${donus}@cluster0.zqw64.azure.mongodb.net/donu?retryWrites=true&w=majority`;
@@ -38,6 +41,9 @@ var fileArray = new Schema({
 var picModel = new Schema({
   name: String,
   link: String,
+  date: String,
+  width: Number,
+  height: Number,
   id: Number,
 });
 
@@ -79,11 +85,25 @@ app.get("/", (req, res) => {
           const results = result.map((wall) => {
             return wall.name;
           });
-          console.log(results);
-          const ok = results;
+
+          const width = result.map((wall) => {
+            return wall.width;
+          });
+          const height = result.map((wall) => {
+            return wall.height;
+          });
+          const upDate = result.map((wall) => {
+            return wall.date;
+          });
+          const fileName = results;
           // }
           db.close();
-          res.render("home", { ok: ok });
+          res.render("home", { 
+            fileName: fileName,
+            upDate:upDate,
+            height:height,
+            width:width
+           });
         });
     });
   };
@@ -125,16 +145,16 @@ var counter = 0;
 app
   .post("/upload/fileupload", function (req, res) {
     // date stamp var
-    var date = new Date(Date.now());
     //  console.log(req);
-
+    
     if (req.url == "/upload/fileupload") {
+      var date = new Date(Date.now());
       var form = new formidable.IncomingForm();
       form.parse(req, function (err, fields, files) {
         counter++;
         var oldpath = files.filetoupload.path
         console.log(oldpath);
-        var newpath = "./img/" + "Walls" + counter + files.filetoupload.name.replace(/ |,|\.|/g, "");;
+        var newpath = "./img/" + "Walls" + counter + files.filetoupload.name.replace(/ |,|/g, "");;
         // console.log(newpath);
         fs.rename(oldpath, newpath, function (err) {
           path.dirname("./img/");
@@ -143,14 +163,19 @@ app
           console.log(newSlice);
           var Model = mongoose.model("picModel", picModel);
           var dinus = newSlice.slice(1);
-          console.log(dinus);
+          // console.log(date);
           // Create an instance of model Model
+          var sizeOf = require('image-size');
+          var dimensions = sizeOf('./img'+newSlice);
+          console.log(dimensions.width, dimensions.height);
           var mongoModle = new Model({
             name: dinus,
             link: newSlice,
+            date: date,
+            width: dimensions.width,
+            height: dimensions.height,
             id: counter,
           });
-
           MongoClient.connect(mongoDB, function (err, db) {
             if (err) throw err;
             var dbo = db.db("donu");

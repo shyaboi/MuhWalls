@@ -13,8 +13,6 @@ img{
 #pix{
     margin: .5em;
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
     -webkit-box-shadow: 0 2px 9px 5px rgba(41, 41, 40, 1);
     -moz-box-shadow: 0 2px 9px 5px rgba(41, 41, 40, 1);
     box-shadow: 0 2px 9px 5px rgba(41, 41, 40, 1);
@@ -34,8 +32,8 @@ background-color: #000;
 
 #picBox{
     position: relative;
-height: 10vw;
-width: 15vw;
+height: 20vw;
+width: 30vw;
     -webkit-box-shadow: 0 2px 9px 5px rgba(41, 41, 40, 1);
     -moz-box-shadow: 0 2px 9px 5px rgba(41, 41, 40, 1);
     box-shadow: 0 2px 9px 5px rgba(41, 41, 40, 1);
