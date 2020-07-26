@@ -46,6 +46,8 @@ var picModel = new Schema({
 app.use(express.static(path.join(__dirname, "img")));
 app.use("/fileupload", express.static("img"));
 app.use("/donus", express.static("img"));
+app.use("/upload", express.static("img"));
+
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + "./public"));
 app.use(express.static(__dirname + "/public/css"));
@@ -121,18 +123,18 @@ console.log("Server Started on " + exPORT);
 
 var counter = 0;
 app
-  .post("/fileupload", function (req, res) {
+  .post("/upload/fileupload", function (req, res) {
     // date stamp var
     var date = new Date(Date.now());
     //  console.log(req);
 
-    if (req.url == "/fileupload") {
+    if (req.url == "/upload/fileupload") {
       var form = new formidable.IncomingForm();
       form.parse(req, function (err, fields, files) {
         counter++;
-        var oldpath = files.filetoupload.path;
+        var oldpath = files.filetoupload.path
         console.log(oldpath);
-        var newpath = "./img/" + "Walls" + counter + files.filetoupload.name;
+        var newpath = "./img/" + "Walls" + counter + files.filetoupload.name.replace(/ |,|\.|/g, "");;
         // console.log(newpath);
         fs.rename(oldpath, newpath, function (err) {
           path.dirname("./img/");
