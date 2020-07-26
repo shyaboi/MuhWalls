@@ -83,26 +83,14 @@ app.get("/", (req, res) => {
           // var getAl = all.name
           // console.log(getAl)
           const results = result.map((wall) => {
-            return wall.name;
+            return wall;
           });
 
-          const width = result.map((wall) => {
-            return wall.width;
-          });
-          const height = result.map((wall) => {
-            return wall.height;
-          });
-          const upDate = result.map((wall) => {
-            return wall.date;
-          });
           const fileName = results;
           // }
           db.close();
           res.render("home", { 
-            fileName: fileName,
-            upDate:upDate,
-            height:height,
-            width:width
+            fileName: fileName
            });
         });
     });
@@ -112,8 +100,143 @@ app.get("/", (req, res) => {
 
 });
 
-app.get("/benis", function (req, res) {
-  
+app.get("/date", (req, res) => {
+  const getAll = () => {
+    MongoClient.connect(mongoDB, function (err, db) {
+      if (err) throw err;
+      var dbo = db.db("donu");
+      var dateSort = { date: 1 };
+      dbo
+        .collection("Wallpapers")
+        .find({})
+        .sort(dateSort)
+        .toArray(function (err, result) {
+          if (err) throw err;
+          // for (let i = 0; i < result.length; i++) {
+          //   const all = result[i];
+          // console.log("\x1b[35m", element.name);
+          // var getAl = all.name
+          // console.log(getAl)
+          const results = result.map((wall) => {
+            return wall;
+          });
+
+          const fileName = results;
+          // }
+          db.close();
+          res.render("home", { 
+            fileName: fileName
+           });
+        });
+    });
+  };
+  getAll();
+  // console.log(ok)
+
+});
+app.get("/daterev", (req, res) => {
+  const getAll = () => {
+    MongoClient.connect(mongoDB, function (err, db) {
+      if (err) throw err;
+      var dbo = db.db("donu");
+      var dateSort = { date: -1 };
+      dbo
+        .collection("Wallpapers")
+        .find({})
+        .sort(dateSort)
+        .toArray(function (err, result) {
+          if (err) throw err;
+          // for (let i = 0; i < result.length; i++) {
+          //   const all = result[i];
+          // console.log("\x1b[35m", element.name);
+          // var getAl = all.name
+          // console.log(getAl)
+          const results = result.map((wall) => {
+            return wall;
+          });
+
+          const fileName = results;
+          // }
+          db.close();
+          res.render("home", { 
+            fileName: fileName
+           });
+        });
+    });
+  };
+  getAll();
+  // console.log(ok)
+
+});
+
+app.get("/tall", (req, res) => {
+  const getAll = () => {
+    MongoClient.connect(mongoDB, function (err, db) {
+      if (err) throw err;
+      var dbo = db.db("donu");
+      var dateSort = { height: -1 };
+      dbo
+        .collection("Wallpapers")
+        .find({})
+        .sort(dateSort)
+        .toArray(function (err, result) {
+          if (err) throw err;
+          // for (let i = 0; i < result.length; i++) {
+          //   const all = result[i];
+          // console.log("\x1b[35m", element.name);
+          // var getAl = all.name
+          // console.log(getAl)
+          const results = result.map((wall) => {
+            return wall;
+          });
+
+          const fileName = results;
+          // }
+          db.close();
+          res.render("home", { 
+            fileName: fileName
+           });
+        });
+    });
+  };
+  getAll();
+  // console.log(ok)
+
+});
+
+app.get("/small", (req, res) => {
+  const getAll = () => {
+    MongoClient.connect(mongoDB, function (err, db) {
+      if (err) throw err;
+      var dbo = db.db("donu");
+      var dateSort = { height: 1 };
+      dbo
+        .collection("Wallpapers")
+        .find({})
+        .sort(dateSort)
+        .toArray(function (err, result) {
+          if (err) throw err;
+          // for (let i = 0; i < result.length; i++) {
+          //   const all = result[i];
+          // console.log("\x1b[35m", element.name);
+          // var getAl = all.name
+          // console.log(getAl)
+          const results = result.map((wall) => {
+            return wall;
+          });
+
+          const fileName = results;
+          // }
+          db.close();
+          res.render("home", { 
+            fileName: fileName
+           });
+        });
+    });
+  };
+  getAll();
+  // console.log(ok)
+
 });
 
 router.get(["/", "//*"], function (req, res, next) {
@@ -148,13 +271,18 @@ app
     //  console.log(req);
     
     if (req.url == "/upload/fileupload") {
-      var date = new Date(Date.now());
+      var d = new Date(Date.now());
+      const y = d.getFullYear()
+      const m = d.getMonth() + 1
+      const dd = d.getDate()
+      const time = d.getHours() +":"+ d.getMinutes()+";" + d.getSeconds()
+      console.log(y+"/"+m+"/"+dd+"+"+time);
       var form = new formidable.IncomingForm();
       form.parse(req, function (err, fields, files) {
         counter++;
         var oldpath = files.filetoupload.path
         console.log(oldpath);
-        var newpath = "./img/" + "Walls" + counter + files.filetoupload.name.replace(/ |,|/g, "");;
+        var newpath = "./img/" + "Walls" + counter + files.filetoupload.name.replace(/ |,|([()])|/g, "");;
         // console.log(newpath);
         fs.rename(oldpath, newpath, function (err) {
           path.dirname("./img/");
@@ -163,7 +291,6 @@ app
           console.log(newSlice);
           var Model = mongoose.model("picModel", picModel);
           var dinus = newSlice.slice(1);
-          // console.log(date);
           // Create an instance of model Model
           var sizeOf = require('image-size');
           var dimensions = sizeOf('./img'+newSlice);
@@ -171,7 +298,7 @@ app
           var mongoModle = new Model({
             name: dinus,
             link: newSlice,
-            date: date,
+            date: y+"/"+m+"/"+dd+":"+time,
             width: dimensions.width,
             height: dimensions.height,
             id: counter,
@@ -199,8 +326,8 @@ app
 <h1><a href="/">home</a></h1>` +
               `<h2>Your wallpaper has been uploaded, it will show up on the 
 <a href="https://dinguswallpapermassiv.herokuapp.com/">homepage</a> 
-in yonks mate!</h2> <div id="newSlice">
-<img src=${newSlice}><a href=${newSlice}>${dinus}+${counter}</a></img>
+soon mate!</h2> <div id="newSlice">
+<img src=${newSlice}><a href=${newSlice}>${dinus}</a></img><br>Resolution: ${dimensions.width+"x"+dimensions.height}
 </body>
 </html>
 `
