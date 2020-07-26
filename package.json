@@ -16,14 +16,11 @@
   },
   "homepage": "https://shyaboi/github.io/wallpapers",
   "scripts": {
-    "start": "start http://localhost:8080 && nodemon server.js",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "start": "node server.js",
     "deploy": "gh-pages -d build"
   },
   "heroku-run-build-script": true,
   "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [
