@@ -1,0 +1,46 @@
+
+    <link rel="stylesheet" href="/css/style.css">
+    <a href="/upload" id="upload" class="navLinks">upload</a>
+<h1>MuhWalls</h1>
+
+<div class="Sort By">
+  <button onclick="myFunction()" class="dropbtn">Sort By &#9660</button>
+  <div id="myDropdown" class="dropdown-content">
+    <a href="/" class="navLinks">Home</a>
+    <a href="/date" class="navLinks">Oldest~Newest</a>
+       <a href="/daterev" class="navLinks">Newest~Oldest</a>
+    <a href="/tall" class="navLinks">Tall~Small</a>
+    <a href="/small" class="navLinks">small~Tall</a>
+
+  </div>
+</div>
+
+<script>
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+
+    <div id="pix">
+{{# each fileName}}
+<div href={{this}} id="picBox">
+<img src={{this.name}}  alt="" />Date Uploaded:{{this.date}}<br>Resolution:{{this.width}}x{{this.height}}
+</div>
+{{/each}}
+</div>
