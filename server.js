@@ -7,12 +7,10 @@ var app = express();
 var router = express.Router();
 const { MongoClient } = require("mongodb");
 var PORT = process.env.port || 4000;
-const homePORT = process.env.PORT || 3000;
 const exPORT = process.env.PORT || 8080;
 require("dotenv").config();
 const donus = process.env.MONGO_THING;
 var fs = require("fs");
-var ExifImage = require('exif').ExifImage;
  
 
 
@@ -25,7 +23,10 @@ app.set("view engine", "handlebars");
 var mongoose = require("mongoose");
 
 //Set up default mongoose connection
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => console.log('DB Popped!'))
+.catch(err => {
+console.log(err);
+});
 
 //Get the default connection
 var db = mongoose.connection;
@@ -69,7 +70,7 @@ var arrayOfFiles = fs.readdirSync("./img");
 
 app.get("/", (req, res) => {
   const getAll = () => {
-    MongoClient.connect(mongoDB, function (err, db) {
+    MongoClient.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true }, function (err, db) {
       if (err) throw err;
       var dbo = db.db("donu");
       var mysort = { name: 1 };
@@ -95,7 +96,7 @@ app.get("/", (req, res) => {
             fileName: fileName
            });
         });
-    });
+    })
   };
   getAll();
   // console.log(ok)
@@ -104,7 +105,7 @@ app.get("/", (req, res) => {
 
 app.get("/date", (req, res) => {
   const getAll = () => {
-    MongoClient.connect(mongoDB, function (err, db) {
+    MongoClient.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true }, function (err, db) {
       if (err) throw err;
       var dbo = db.db("donu");
       var dateSort = { date: 1 };
@@ -130,15 +131,15 @@ app.get("/date", (req, res) => {
             fileName: fileName
            });
         });
-    });
+    })
   };
   getAll();
   // console.log(ok)
 
-});
+})
 app.get("/daterev", (req, res) => {
   const getAll = () => {
-    MongoClient.connect(mongoDB, function (err, db) {
+    MongoClient.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true }, function (err, db) {
       if (err) throw err;
       var dbo = db.db("donu");
       var dateSort = { date: -1 };
@@ -173,7 +174,7 @@ app.get("/daterev", (req, res) => {
 
 app.get("/tall", (req, res) => {
   const getAll = () => {
-    MongoClient.connect(mongoDB, function (err, db) {
+    MongoClient.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true }, function (err, db) {
       if (err) throw err;
       var dbo = db.db("donu");
       var dateSort = { height: -1 };
@@ -208,7 +209,7 @@ app.get("/tall", (req, res) => {
 
 app.get("/small", (req, res) => {
   const getAll = () => {
-    MongoClient.connect(mongoDB, function (err, db) {
+    MongoClient.connect(mongoDB,{ useNewUrlParser: true, useUnifiedTopology: true }, function (err, db) {
       if (err) throw err;
       var dbo = db.db("donu");
       var dateSort = { height: 1 };
@@ -243,7 +244,7 @@ app.get("/small", (req, res) => {
 
 app.get("/16:9", (req, res) => {
   const getAll = () => {
-    MongoClient.connect(mongoDB, function (err, db) {
+    MongoClient.connect(mongoDB,{ useNewUrlParser: true, useUnifiedTopology: true }, function (err, db) {
       if (err) throw err;
       var dbo = db.db("donu");
       var heightSort =  { name: 1 };
@@ -278,7 +279,7 @@ app.get("/16:9", (req, res) => {
 
 app.get("/UltraWide", (req, res) => {
   const getAll = () => {
-    MongoClient.connect(mongoDB, function (err, db) {
+    MongoClient.connect(mongoDB,{ useNewUrlParser: true, useUnifiedTopology: true }, function (err, db) {
       if (err) throw err;
       var dbo = db.db("donu");
       var heightSort =  { name: 1 };
@@ -313,7 +314,7 @@ app.get("/UltraWide", (req, res) => {
 
 app.get("/1080P", (req, res) => {
   const getAll = () => {
-    MongoClient.connect(mongoDB, function (err, db) {
+    MongoClient.connect(mongoDB,{ useNewUrlParser: true, useUnifiedTopology: true }, function (err, db) {
       if (err) throw err;
       var dbo = db.db("donu");
       var heightSort =  { name: 1 };
@@ -348,7 +349,7 @@ app.get("/1080P", (req, res) => {
 
 app.get("/4k", (req, res) => {
   const getAll = () => {
-    MongoClient.connect(mongoDB, function (err, db) {
+    MongoClient.connect(mongoDB,{ useNewUrlParser: true, useUnifiedTopology: true }, function (err, db) {
       if (err) throw err;
       var dbo = db.db("donu");
       var heightSort =  { name: 1 };
@@ -384,7 +385,7 @@ app.get("/4k", (req, res) => {
 
 app.get("/1440P", (req, res) => {
   const getAll = () => {
-    MongoClient.connect(mongoDB, function (err, db) {
+    MongoClient.connect(mongoDB,{ useNewUrlParser: true, useUnifiedTopology: true }, function (err, db) {
       if (err) throw err;
       var dbo = db.db("donu");
       var heightSort =  { name: 1 };
@@ -422,7 +423,7 @@ app.get('/img/:keyword', function (req, res) {
   let keyParam = req.params.keyword
   
   const getAll = () => {
-    MongoClient.connect(mongoDB, function (err, db) {
+    MongoClient.connect(mongoDB,{ useNewUrlParser: true, useUnifiedTopology: true }, function (err, db) {
       // console.log(keyParam)
       if (err) throw err;
       var dbo = db.db("donu");
@@ -558,7 +559,7 @@ app
             aspectRatio: aRR,
             id: counter,
           });
-          MongoClient.connect(mongoDB, function (err, db) {
+          MongoClient.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true }, function (err, db) {
             if (err) throw err;
             var dbo = db.db("donu");
             var myobj = mongoModle;
