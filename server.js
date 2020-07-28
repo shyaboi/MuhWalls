@@ -519,6 +519,7 @@ app
       }
       const time = h +":"+ mm+";" + s
       var form = new formidable.IncomingForm();
+      form.uploadDir='tmp';
       form.parse(req, function (err, fields, files) {
         counter++;
         var oldpath = files.filetoupload.path
