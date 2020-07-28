@@ -519,16 +519,17 @@ app
       }
       const time = h +":"+ mm+";" + s
       var form = new formidable.IncomingForm();
-      form.uploadDir='tmp';
+      
       form.parse(req, function (err, fields, files) {
         counter++;
         var oldpath = files.filetoupload.path
         console.log(oldpath);
+        
         var newpath = "./img/" + "Walls" + counter + files.filetoupload.name.replace(/ |,|([()])|/g, "");;
         // console.log(newpath);
         let nam = fields.newName
         let kW = fields.keywords
-        fs.rename(oldpath, newpath, function (err) {
+        fs.copyFile(oldpath, newpath, function (err) {
           path.dirname("./img/");
           if (err) throw err;
           var newSlice = newpath.slice(5);
