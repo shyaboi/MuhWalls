@@ -549,7 +549,6 @@ app
             aRR = "UltraWide"
           }
           var mongoModle = new Model({
-            keywords: keyArr,
             name: dinus,
             newName: nam,
             link: newSlice,
@@ -557,6 +556,7 @@ app
             width: dimensions.width,
             height: dimensions.height,
             aspectRatio: aRR,
+            keywords: keyArr,
             id: counter,
           });
           MongoClient.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true }, function (err, db) {
