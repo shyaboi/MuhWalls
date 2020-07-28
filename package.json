@@ -16,12 +16,11 @@
   },
   "homepage": "https://shyaboi/github.io/wallpapers",
   "scripts": {
-    "start": "node server.js",
+    "start": "cd build && npm start",
     "deploy": "gh-pages -d build"
   },
   "heroku-run-build-script": true,
-  "eslintConfig": {
-  },
+  "eslintConfig": {},
   "browserslist": {
     "production": [
       ">0.2%",
