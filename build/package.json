@@ -16,7 +16,7 @@
   },
   "homepage": "https://shyaboi/github.io/wallpapers",
   "scripts": {
-    "start": "node server.js",
+    "start": "npm i && node server.js",
     "deploy": "gh-pages -d build"
   },
   "heroku-run-build-script": true,
