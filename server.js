@@ -9,13 +9,12 @@ const { MongoClient } = require("mongodb");
 var PORT = process.env.port || 4000;
 const exPORT = process.env.PORT || 8080;
 require("dotenv").config();
-const donus = process.env.MONGO_THING;
 var fs = require("fs");
  
 
 
 exports.arrayOfFiles = arrayOfFiles;
-const mongoDB = `mongodb+srv://shyaboi:${donus}@cluster0.zqw64.azure.mongodb.net/donu?retryWrites=true&w=majority`;
+const mongoDB = `mongodb+srv://shyaboi:process.env.MONGO_THING;@cluster0.zqw64.azure.mongodb.net/donu?retryWrites=true&w=majority`;
 var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");
@@ -472,7 +471,7 @@ app.get("/upload", (req, res) => {
   );
   res.write('<input type="file" name="filetoupload" id="fileChooseButt"><br>');
   res.write(`what do you call this wallpaper?<input type="text" name="newName"  id="nameInput" value="" /> <br>`)
-  res.write(`input keywords<input type="text" name="keywords" id="keywords" value="" /> <br>`)
+  res.write(`input keywords<textarea type="text" name="keywords" id="keyBox" value=""></textarea> <br>`)
   res.write('<input type="submit" id="upladButt" value="Uplad"></input>');
   res.write("</form>");
   return res.end();
