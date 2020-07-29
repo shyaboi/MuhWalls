@@ -583,7 +583,7 @@ app
 <body>
 <h1><a href="/">home</a></h1>` +
               `<h2>Your wallpaper has been uploaded, it will show up on the 
-<a href="https://dinguswallpapermassiv.herokuapp.com/">homepage</a> 
+<a href="/">homepage</a> 
 soon mate!</h2> <div id="newSlice">
 <img id="upPic" src=${newSlice}><a href=${newSlice}>${dinus}</a></img><br>Resolution: ${dimensions.width+"x"+dimensions.height}
 </body>
