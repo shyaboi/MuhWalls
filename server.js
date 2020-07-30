@@ -11,10 +11,9 @@ const exPORT = process.env.PORT || 8080;
 require("dotenv").config();
 const donus = process.env.MONGO_THING;
 var fs = require("fs");
- 
 
 
-exports.arrayOfFiles = arrayOfFiles;
+
 const mongoDB = `mongodb+srv://shyaboi:${donus}@cluster0.zqw64.azure.mongodb.net/donu?retryWrites=true&w=majority`;
 var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs());
@@ -55,6 +54,7 @@ app.use("/fileupload", express.static("img"));
 app.use("/donus", express.static("img"));
 app.use("/upload", express.static("img"));
 app.use("/img", express.static("img"));
+app.use(express.static("public/views/layouts"));
 
 
 app.use(express.static(__dirname + "/public"));
@@ -68,7 +68,10 @@ app.get("/css/styles.css", function (req, res) {
 
 var arrayOfFiles = fs.readdirSync("./img");
 
+
+
 app.get("/", (req, res) => {
+  
   const getAll = () => {
     MongoClient.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true }, function (err, db) {
       if (err) throw err;
@@ -92,7 +95,7 @@ app.get("/", (req, res) => {
           const fileName = results;
           // }
           db.close();
-          res.render("home", { 
+          res.render(`home`, { 
             fileName: fileName
            });
         });

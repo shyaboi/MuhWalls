@@ -1,3 +1,0 @@
-
-
-  alert('js is working')

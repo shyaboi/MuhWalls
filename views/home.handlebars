@@ -1,17 +1,72 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Example App</title>
-    <link rel="stylesheet" href="/css/style.css">
 
-</head>
 
-<body>
 
-    {{{body}}}
+<a href="/upload" id="upload" class="navLinks">upload</a>
+<h1>MuhWalls</h1>
 
-</body>
-<script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
 
-</html>
+<br>
+<nav>
+    <a href="/" class="navLinks">All</a>
+<a href="/16:9" class="navLinks">16:9 only</a>
+<a href="/UltraWide" class="navLinks">Ultra Wide</a>
+<a href="/1080P" class="navLinks">1080P</a>
+<a href="/1440P" class="navLinks">1440P</a>
+<a href="/4k" class="navLinks">4K</a>
+
+<div class="Sort By">
+  <button onclick="myFunction()" class="dropbtn">Sort By &#9660</button>
+  <div id="myDropdown" class="dropdown-content">
+    <a href="/date" class="navLinks">Oldest~Newest</a>
+    <a href="/daterev" class="navLinks">Newest~Oldest</a>
+    <a href="/tall" class="navLinks">Tall~Small</a>
+    <a href="/small" class="navLinks">small~Tall</a>
+
+
+
+
+  </div>
+</div>
+
+<script>
+  /* When the user clicks on the button, 
+  toggle between hiding and showing the dropdown content */
+  function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+
+  // Close the dropdown if the user clicks outside of it
+  window.onclick = function (event) {
+    if (!event.target.matches('.dropbtn')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
+</script>
+  
+
+  
+</nav>
+<div id="pix">
+  {{# each fileName}}
+  <div id="picBox">
+
+    <a href={{this.name}}>
+      <img class="lazy" data-src={{this.name}} alt={{this.newName}} /> 
+      </a>
+   Name: <a href={{this.name}}> {{this.newName}}</a> <br> 
+      Date Uploaded:{{this.date}}<br>
+      Resolution:{{this.width}}x{{this.height}} <br>
+    Aspect Ratio : <a href="/{{this.aspectRatio}}">{{this.aspectRatio}}</a> <br>
+  <ul id="keywords">  {{# each this.keywords}}<li><a href="/img/{{this}}">{{this}}</a></li>{{/each}}</ul>
+
+
+  </div>
+  {{/each}}
+</div>
