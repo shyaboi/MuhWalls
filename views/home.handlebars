@@ -55,16 +55,16 @@
 </nav>
 <div id="pix">
   {{# each fileName}}
-  <div id="picBox">
+  <div class="lazy" id="picBox">
 
     <a href={{this.name}}>
       <img class="lazy" data-src={{this.name}} alt={{this.newName}} /> 
       </a>
-   Name: <a href={{this.name}}> {{this.newName}}</a> <br> 
+   Name: <a class="lazy" href={{this.name}}> {{this.newName}}</a> <br> 
       Date Uploaded:{{this.date}}<br>
       Resolution:{{this.width}}x{{this.height}} <br>
     Aspect Ratio : <a href="/{{this.aspectRatio}}">{{this.aspectRatio}}</a> <br>
-  <ul id="keywords">  {{# each this.keywords}}<li><a href="/img/{{this}}">{{this}}</a></li>{{/each}}</ul>
+  <ul class="lazy" id="keywords">  {{# each this.keywords}}<li><a href="/img/{{this}}">{{this}}</a></li>{{/each}}</ul>
 
 
   </div>
