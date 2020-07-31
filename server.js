@@ -488,7 +488,7 @@ app.get("/toobig", (req, res) => {
   res.write(`<script> var player =  iframe.getElementById('player');
   player.mute();</script><h1>File too big, please limit files to less than 5mb</h1> <br><video loop class= width="auto" height="auto" poster="https://y.yarn.co/423fbe7f-0628-4dac-80fe-5c93979346e9_screenshot.jpg" autoplay="autoplay">
   <source id="" class="realsource" src="https://y.yarn.co/423fbe7f-0628-4dac-80fe-5c93979346e9.mp4?1596238325334" type="video/mp4">
-</video><br> <a href="/upload">Back to uploads page.</a>`);
+</video><br> <h1><a href="/upload">Back to uploads page.</a></h1>`);
   return res.end();
 });
 
