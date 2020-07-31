@@ -47,7 +47,6 @@ var picModel = new Schema({
   id: Number,
 });
 
-// Save the new model instance, passing a callback
 
 app.use(express.static(path.join(__dirname, "img")));
 app.use("/fileupload", express.static("img"));
@@ -485,6 +484,14 @@ app.get("/donus", (req, res) => {
   res.json(`${arrayOfFiles}`);
 });
 
+app.get("/toobig", (req, res) => {
+  res.write(`<script> var player =  iframe.getElementById('player');
+  player.mute();</script><h1>File too big, please limit files to less than 5mb</h1> <br><video loop class= width="auto" height="auto" poster="https://y.yarn.co/423fbe7f-0628-4dac-80fe-5c93979346e9_screenshot.jpg" autoplay="autoplay">
+  <source id="" class="realsource" src="https://y.yarn.co/423fbe7f-0628-4dac-80fe-5c93979346e9.mp4?1596238325334" type="video/mp4">
+</video><br> <a href="/upload">Back to uploads page.</a>`);
+  return res.end();
+});
+
 app.listen(exPORT);
 console.log("Server Started on " + exPORT);
 
@@ -522,9 +529,14 @@ app
       }
       const time = h +":"+ mm+";" + s
       var form = new formidable.IncomingForm();
-      
       form.parse(req, function (err, fields, files) {
+        const fileSize = form._fileSize
         counter++;
+        if (fileSize > 5242880) {
+        console.log('big')
+        res.redirect("/toobig");
+        }
+       else{
         var oldpath = files.filetoupload.path
         console.log(oldpath);
         
@@ -592,11 +604,11 @@ soon mate!</h2> <div id="newSlice">
 </body>
 </html>
 `
-          );
-
+  );
+      
           res.end();
         });
-      });
+    }});
     }
   })
   .listen(PORT);
