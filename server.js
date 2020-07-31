@@ -485,7 +485,10 @@ app.get("/donus", (req, res) => {
 });
 
 app.get("/toobig", (req, res) => {
-  res.write(`<h1>File too big, please limit files to less than 5mb</h1> <br><iframe width="620" height="400" src="https://www.youtube.com/embed/oumydDheAuM" frameborder="0" allow="accelerometer; autoplay="1"; loop; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br> <a href="/upload">Back to uploads page.</a>`);
+  res.write(`<script> var player =  iframe.getElementById('player');
+  player.mute();</script><h1>File too big, please limit files to less than 5mb</h1> <br><video loop class= width="auto" height="auto" poster="https://y.yarn.co/423fbe7f-0628-4dac-80fe-5c93979346e9_screenshot.jpg" autoplay="autoplay">
+  <source id="" class="realsource" src="https://y.yarn.co/423fbe7f-0628-4dac-80fe-5c93979346e9.mp4?1596238325334" type="video/mp4">
+</video><br> <a href="/upload">Back to uploads page.</a>`);
   return res.end();
 });
 
