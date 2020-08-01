@@ -53,6 +53,8 @@ app.use("/fileupload", express.static("img"));
 app.use("/donus", express.static("img"));
 app.use("/upload", express.static("img"));
 app.use("/img", express.static("img"));
+app.use("/img/:keyword", express.static("img"));
+
 app.use(express.static("public/views/layouts"));
 
 
