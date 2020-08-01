@@ -1,6 +1,0 @@
-tree 39517b88d1a2a31707a0ec89feb5d5140b6cc2b2
-parent 200ea46004863d9fad913e00b40aab16e4c0b99c
-author Shyaboi <ian.shane.sears@gmail.com> 1595739108 -0700
-committer Shyaboi <ian.shane.sears@gmail.com> 1595739108 -0700
-
-regex taking out extra chars and spaces and live updating with mongo
