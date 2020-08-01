@@ -53,7 +53,6 @@ app.use("/fileupload", express.static("img"));
 app.use("/donus", express.static("img"));
 app.use("/upload", express.static("img"));
 app.use("/img", express.static("img"));
-app.use("/img/:keyword", express.static("img"));
 
 app.use(express.static("public/views/layouts"));
 
@@ -61,6 +60,8 @@ app.use(express.static("public/views/layouts"));
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + "./public"));
 app.use(express.static(__dirname + "/public/css"));
+app.use(express.static(__dirname + "/public/"));
+
 
 app.get("/css/styles.css", function (req, res) {
   res.send("css/styles.css");
@@ -423,19 +424,19 @@ app.get("/1440P", (req, res) => {
 });
 
 
-app.get('/img/:keyword', function (req, res) {
+app.get('/img+:keyword', function (req, res) {
   let keyParam = req.params.keyword
   
   const getAll = () => {
     MongoClient.connect(mongoDB,{ useNewUrlParser: true, useUnifiedTopology: true }, function (err, db) {
-      // console.log(keyParam)
+      console.log(keyParam.substr(1))
       if (err) throw err;
       var dbo = db.db("donu");
       var  keySearch =  { name: 1 };
       dbo
         .collection("Wallpapers")
         .find({
-          keywords: keyParam
+          keywords: keyParam.substr(1)
         })
         .sort(keySearch)
         .toArray(function (err, result) {
