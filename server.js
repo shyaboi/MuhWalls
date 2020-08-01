@@ -66,61 +66,6 @@ app.get("/css/styles.css", function (req, res) {
 
 var arrayOfFiles = fs.readdirSync("./img");
 
-app.post("/search", (req, res) => {
-  var form = new formidable.IncomingForm();
-  form.parse(req, function (err, fields, files) {
-    let searchRaw = fields.search;
-   var searchCleaned = searchRaw.replace(/\s/g, "");
-res.redirect(`/search+${[searchCleaned]}`)
-    res.end()
-  });
-});
-
-app.get(`/search+:searchwords`, (req, res) => {
-  let sw = req.params.searchwords;
-  console.log(sw)
-  let swSplit = sw.substr(1)
-    let searchArr = swSplit.split(",");
-    // res.write(`${searchArr}`)
-    const getAll = () => {
-      // console.log(searchArr)
-      MongoClient.connect(
-        mongoDB,
-        { useNewUrlParser: true, useUnifiedTopology: true },
-        function (err, db) {
-          if (err) throw err;
-          var dbo = db.db("donu");
-          var keySearch = { name: 1 };
-          
-
-          dbo
-            .collection("Wallpapers")
-            .find({keywords: {$in:[searchArr[0],searchArr[1],searchArr[2],searchArr[3],searchArr[4],searchArr[5],searchArr[6],searchArr[7],searchArr[8],searchArr[9],searchArr[10]]}})
-            .sort(keySearch)
-            .toArray(function (err, result) {
-              if (err) throw err;
-              // for (let i = 0; i < result.length; i++) {
-              //   const all = result[i];
-              // console.log("\x1b[35m", element.name);
-              // var getAl = all.name
-              console.log(result);
-              const results = result.map((wall) => {
-                return wall;
-              });
-  
-              const fileName = results;
-              // }
-              db.close();
-              res.render("home", {
-                fileName: fileName,
-              });
-            });
-        }
-      );
-    };
-    getAll();
-
-})
 
 
 app.get("/", (req, res) => {
@@ -501,6 +446,67 @@ app.get("/1440P", (req, res) => {
   getAll();
   // console.log(ok)
 });
+
+app.post("/search", (req, res) => {
+  var form = new formidable.IncomingForm();
+  form.parse(req, function (err, fields, files) {
+    let searchRaw = fields.search;
+   var searchCleaned = searchRaw.replace(/[ ,]+/g, ",");
+res.redirect(`/search+${[searchCleaned]}`)
+    res.end()
+  });
+});
+
+app.get(`/search+:searchwords`, (req, res) => {
+  let sw = req.params.searchwords;
+  // console.log(sw)
+  let swSplit = sw.substr(1)
+  // console.log(swSplit)
+  let searchAr =  swSplit.replace(/[ ,]+/g, ",");
+  // console.log(searchAr)
+    let searchArr = searchAr.split(",");
+    // console.log(searchArr[0].test(/\([A-Za-z]\)[sS]$/))
+
+    // res.write(`${searchArr}`)
+    const getAll = () => {
+      // console.log(searchArr)
+      MongoClient.connect(
+        mongoDB,
+        { useNewUrlParser: true, useUnifiedTopology: true },
+        function (err, db) {
+          if (err) throw err;
+          var dbo = db.db("donu");
+          var keySearch = { name: 1 };
+
+          dbo
+            .collection("Wallpapers")
+            .find({keywords: {$in:[searchArr[0],searchArr[1],searchArr[2],searchArr[3],searchArr[4],searchArr[5],searchArr[6],searchArr[7],searchArr[8],searchArr[9],searchArr[10]]}})
+            .sort(keySearch)
+            .toArray(function (err, result) {
+              if (err) throw err;
+              // for (let i = 0; i < result.length; i++) {
+              //   const all = result[i];
+              // console.log("\x1b[35m", element.name);
+              // var getAl = all.name
+              console.log(result);
+              const results = result.map((wall) => {
+                return wall;
+              });
+  
+              const fileName = results;
+              // }
+              db.close();
+              res.render("home", {
+                fileName: fileName,
+              });
+            });
+        }
+      );
+    };
+    getAll();
+
+})
+
 
 app.get("/img+:keyword?", function (req, res) {
   let keyParam = req.params.keyword;
