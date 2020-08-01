@@ -66,8 +66,6 @@ app.get("/css/styles.css", function (req, res) {
 
 var arrayOfFiles = fs.readdirSync("./img");
 
-
-
 app.get("/", (req, res) => {
   const getAll = () => {
     MongoClient.connect(
@@ -451,62 +449,153 @@ app.post("/search", (req, res) => {
   var form = new formidable.IncomingForm();
   form.parse(req, function (err, fields, files) {
     let searchRaw = fields.search;
-   var searchCleaned = searchRaw.replace(/[ ,]+/g, ",");
-res.redirect(`/search+${[searchCleaned]}`)
-    res.end()
+    var searchCleaned = searchRaw.replace(/[ ,]+/g, ",");
+    res.redirect(`/search+${[searchCleaned]}`);
+    res.end();
   });
 });
 
 app.get(`/search+:searchwords`, (req, res) => {
   let sw = req.params.searchwords;
   // console.log(sw)
-  let swSplit = sw.substr(1)
+  let swSplit = sw.substr(1);
+  let swLower = swSplit.toLowerCase()
   // console.log(swSplit)
-  let searchAr =  swSplit.replace(/[ ,]+/g, ",");
+  let searchAr = swLower.replace(/[ ,]+/g, ",");
   // console.log(searchAr)
-    let searchArr = searchAr.split(",");
-    // console.log(searchArr[0].test(/\([A-Za-z]\)[sS]$/))
+  let searchArr = searchAr.split(",");
+  const searchArrayClone = searchArr.map((thing) => {
+    thing + "s";
+    return thing;
+  });
+  console.log(searchArrayClone);
+  // res.write(`${searchArr}`)
+  const getAll = () => {
+    // console.log(searchArr)
+    MongoClient.connect(
+      mongoDB,
+      { useNewUrlParser: true, useUnifiedTopology: true },
+      function (err, db) {
+        if (err) throw err;
+        var dbo = db.db("donu");
+        var keySearch = { name: 1 };
+        // ------------------------------------------ search array raw params
+        let ar1 = searchArrayClone[0], ar2 = searchArrayClone[1],ar3 = searchArrayClone[2],ar4 = searchArrayClone[3],ar5 = searchArrayClone[4],ar6 = searchArrayClone[5],ar7 = searchArrayClone[6],ar8 = searchArrayClone[7],ar9 = searchArrayClone[8],ar10 = searchArrayClone[9];
+        // ------------------------------------------ search array raw params
 
-    // res.write(`${searchArr}`)
-    const getAll = () => {
-      // console.log(searchArr)
-      MongoClient.connect(
-        mongoDB,
-        { useNewUrlParser: true, useUnifiedTopology: true },
-        function (err, db) {
-          if (err) throw err;
-          var dbo = db.db("donu");
-          var keySearch = { name: 1 };
 
-          dbo
-            .collection("Wallpapers")
-            .find({keywords: {$in:[searchArr[0],searchArr[1],searchArr[2],searchArr[3],searchArr[4],searchArr[5],searchArr[6],searchArr[7],searchArr[8],searchArr[9],searchArr[10]]}})
-            .sort(keySearch)
-            .toArray(function (err, result) {
-              if (err) throw err;
-              // for (let i = 0; i < result.length; i++) {
-              //   const all = result[i];
-              // console.log("\x1b[35m", element.name);
-              // var getAl = all.name
-              console.log(result);
-              const results = result.map((wall) => {
-                return wall;
-              });
-  
-              const fileName = results;
-              // }
-              db.close();
-              res.render("home", {
-                fileName: fileName,
-              });
+
+
+        // ---------------------------------------------------------s check and slice
+        if (ar2 === undefined || ar2 === null) {
+          console.log("free search fields sp2")
+        }else{
+        const last2 = ar2.length - 1;
+        const charChex2= ar2.charAt(last2)
+        console.log(charChex2)
+      if (charChex2 === "s") {var sl2 = ar2.slice(0, -1); console.log(sl2)}
+      }
+
+        if (ar3 === undefined || ar3 === null) {
+          console.log("free search fields sp3")
+        }else{
+        const last3 = ar3.length - 1;
+        const charChex3= ar3.charAt(last3)
+        console.log(charChex3); if (charChex3 === "s") {var sl3 = ar3.slice(0, -1); console.log(sl3)}}
+
+        if (ar4 === undefined || ar4 === null) {
+          console.log("free search fields sp4")
+        }else{
+        const last4 = ar4.length - 1;
+        const charChex4= ar4.charAt(last4)
+        console.log(charChex4); if (charChex4 === "s") {var sl4 = ar4.slice(0, -1); console.log(sl4)}}
+
+        if (ar5 === undefined || ar5 === null) {
+          console.log("free search fields sp5")
+        }else{
+        const last5 = ar5.length - 1;
+        const charChex5= ar5.charAt(last5)
+        console.log(charChex5); if (charChex5 === "s") {var sl5 = ar5.slice(0, -1); console.log(sl5)}}
+
+        if (ar6 === undefined || ar6 === null) {
+          console.log("free search fields sp6")
+        }else{
+        const last6 = ar6.length - 1;
+        const charChex6= ar6.charAt(last6)
+        console.log(charChex6); if (charChex6 === "s") {var sl6 = ar6.slice(0, -1); console.log(sl6)}}
+
+        if (ar7 === undefined || ar7 === null) {
+          console.log("free search fields sp7")
+        }else{
+        const last7 = ar7.length - 1;
+        const charChex7= ar7.charAt(last7)
+        console.log(charChex7); if (charChex7 === "s") {var sl7 = ar7.slice(0, -1); console.log(sl7)}}
+
+        if (ar8 === undefined || ar8 === null) {
+          console.log("free search fields sp8")
+        }else{
+        const last8 = ar8.length - 1;
+        const charChex8= ar8.charAt(last8)
+        console.log(charChex8); if (charChex8 === "s") {var sl8 = ar8.slice(0, -1); console.log(sl8)}}
+
+        if (ar9 === undefined || ar9 === null) {
+          console.log("free search fields sp9")
+        }else{
+        const last3 = ar9.length - 1;
+        const charChex9= ar9.charAt(last9)
+        console.log(charChex9); if (charChex9 === "s") {var sl9 = ar9.slice(0, -1); console.log(sl9)}}
+
+        if (ar10 === undefined || ar10 === null) {
+          console.log("free search fields sp10")
+        }else{
+        const last10 = ar10.length - 1;
+        const charChex10= ar10.charAt(last10)
+        console.log(charChex10); if (charChex10s === "s") {var sl10s = ar10s.slice(0, -1); console.log(sl10s)}}
+
+        // ---------------------------------------------------------s check and slice
+
+        dbo
+          .collection("Wallpapers")
+          .find({
+            keywords: {
+              $in: [
+                ar1,ar1 + "s" || "S",ar1.slice(0, -1),
+                ar2,ar2 + "s" || "S",sl2,
+                ar3,ar3 + "s" || "S",
+                ar4,ar4 + "s" || "S",
+                ar5,ar5 + "s" || "S",
+                ar6,ar6 + "s" || "S",
+                ar7,ar7 + "s" || "S",
+                ar8,ar8 + "s" || "S",
+                ar9,ar9 + "s" || "S",
+                ar10, ar10 + "s" || "S"
+              ],
+            },
+          })
+          .sort(keySearch)
+          .toArray(function (err, result) {
+            if (err) throw err;
+            // for (let i = 0; i < result.length; i++) {
+            //   const all = result[i];
+            // console.log("\x1b[35m", element.name);
+            // var getAl = all.name
+            // console.log(result);
+            const results = result.map((wall) => {
+              return wall;
             });
-        }
-      );
-    };
-    getAll();
 
-})
-
+            const fileName = results;
+            // }
+            db.close();
+            res.render("home", {
+              fileName: fileName,
+            });
+          });
+      }
+    );
+  };
+  getAll();
+});
 
 app.get("/img+:keyword?", function (req, res) {
   let keyParam = req.params.keyword;
@@ -532,7 +621,7 @@ app.get("/img+:keyword?", function (req, res) {
             //   const all = result[i];
             // console.log("\x1b[35m", element.name);
             // var getAl = all.name
-            console.log(result);
+            // console.log(result);
             const results = result.map((wall) => {
               return wall;
             });
@@ -644,6 +733,7 @@ app
           // console.log(newpath);
           let nam = fields.newName;
           let kW = fields.keywords;
+          
           fs.copyFile(oldpath, newpath, function (err) {
             path.dirname("./img/");
             if (err) throw err;
@@ -656,7 +746,7 @@ app
             // console.log(dimensions.width, dimensions.height);
             let aR = dimensions.width / dimensions.height;
             let aRR = Math.round(100 * aR) / 100;
-            keySpace = kW.replace(/\s/g, "");
+            keySpace = kW.replace(/[ ,]+/g, ",");
             let keyArr = keySpace.split(",");
             // console.log(keyArr)
             if (aRR === 1.78) {
