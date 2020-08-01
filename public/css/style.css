@@ -204,6 +204,9 @@ width: 46.5vw;
     float: right;
     font-size: 45px;
 }
+#search{
+  float: right;
+}
 
 
 #upladContainer{

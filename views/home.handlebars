@@ -26,8 +26,11 @@
 
 
   </div>
+    <form action="search" id="search" method="post" enctype="multipart/form-data">
+  search<input type="text" name="search"  id="nameInput" value="" /> 
+  <input type="submit" id="searchButt" value="search" />
+ </form>
 </div>
-
 <script>
   /* When the user clicks on the button, 
   toggle between hiding and showing the dropdown content */
@@ -63,7 +66,7 @@
    Name: <a class="lazy" href={{this.name}}> {{this.newName}}</a> <br> 
       Date Uploaded:{{this.date}}<br>
       Resolution:{{this.width}}x{{this.height}} <br>
-    Aspect Ratio : <a href="/{{this.aspectRatio}}">{{this.aspectRatio}}</a> <br>
+    Aspect Ratio : <a href="/img+{{this.aspectRatio}}">{{this.aspectRatio}}</a> <br>
   <ul class="lazy" id="keywords">  {{# each this.keywords}}<li><a href="/img+{{this}}">{{this}}</a></li>{{/each}}</ul>
 
 
