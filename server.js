@@ -44,6 +44,8 @@ var picModel = new Schema({
   aspectRatio: String,
   keywords: Array,
   id: Number,
+  upboats:Number,
+  downboats:Number
 });
 
 app.use(express.static(path.join(__dirname, "img")));
@@ -74,7 +76,7 @@ app.get("/", (req, res) => {
       function (err, db) {
         if (err) throw err;
         var dbo = db.db("donu");
-        var mysort = { name: 1 };
+        var mysort = { upboats: -1 };
         dbo
           .collection("Wallpapers")
           .find({})
@@ -445,13 +447,71 @@ app.get("/1440P", (req, res) => {
   // console.log(ok)
 });
 
+
+
+app.post(`/like`, (req, res) => {
+  var form = new formidable.IncomingForm();
+  form.parse(req, function (err, fields, files) {
+    const likeName = JSON.stringify(fields.like)
+    const ln = likeName.slice(1, -1);
+    let q = {name:ln}
+    console.log(q)
+    MongoClient.connect(
+      mongoDB,
+      { useNewUrlParser: true, useUnifiedTopology: true },
+      function (err, db) {
+        if (err) throw err;
+        var dbo = db.db("donu");
+        dbo.collection("Wallpapers").updateOne(q, { $inc: { upboats:1} }, function (err, res) {
+          if (err) throw err;
+          console.log("\x1b[36m", "1 document inserted");
+        });
+        
+      });
+    }
+    );
+    res.redirect("/")
+    db.close();
+        
+ })
+
+ app.post(`/dlike`, (req, res) => {
+  var form = new formidable.IncomingForm();
+  form.parse(req, function (err, fields, files) {
+    const dlikeName = JSON.stringify(fields.dlike)
+    const dln = dlikeName.slice(1, -1);
+    let dq = {name:dln}
+    console.log(dq)
+    MongoClient.connect(
+      mongoDB,
+      { useNewUrlParser: true, useUnifiedTopology: true },
+      function (err, db) {
+        if (err) throw err;
+        var dbo = db.db("donu");
+        dbo.collection("Wallpapers").updateOne(dq, { $inc: { downboats:1} }, function (err, res) {
+          if (err) throw err;
+          console.log("\x1b[36m", "1 document inserted");
+        });
+        
+      });
+    }
+    );
+    res.redirect("/")
+    db.close();
+        
+ })
+
+   
+    app.get(`/like`, (req, res) => {res.write("<a href="/">");  res.end();})
+
+
+
 app.post("/search", (req, res) => {
   var form = new formidable.IncomingForm();
   form.parse(req, function (err, fields, files) {
     let searchRaw = fields.search;
     var searchCleaned = searchRaw.replace(/[ ,]+/g, ",");
     res.redirect(`/search+${[searchCleaned]}`);
-    res.end();
   });
 });
 
@@ -765,6 +825,8 @@ app
               aspectRatio: aRR,
               keywords: keyArr,
               id: counter,
+              upboats:0,
+              downboats:0,
             });
             MongoClient.connect(
               mongoDB,

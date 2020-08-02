@@ -1,3 +1,13 @@
+@media (max-width: 1200px) {
+  button {
+    width: 200px;
+  height: 50px;}
+
+  input{
+    height: 50px;
+    width: 300px;
+  }
+}
 
 
 body{
@@ -98,16 +108,16 @@ background-color: #000;
 
 #picBox{
     position: relative;
-height: 29vw;
+height: 32vw;
 width: 46.5vw;
     -webkit-box-shadow: 0 2px 9px 5px rgba(41, 41, 40, 1);
     -moz-box-shadow: 0 2px 9px 5px rgba(41, 41, 40, 1);
     box-shadow: 0 2px 9px 5px rgba(41, 41, 40, 1);
     align-items: center;
-    padding-bottom:8vw;
+    padding-bottom:13vw;
     margin-left: 1em;
     margin-top: 1em;
-    margin-bottom: 1em;
+    margin-bottom: 4em;
     word-wrap: break-word;
     font-size: 1.5vw;
     text-align: center;
@@ -120,7 +130,7 @@ width: 46.5vw;
     height: 50vw;
     width: 100vw;
     margin: 0;
-    padding: 2em 2em 6em 2em;
+    padding: 1em 1em 10em 1em;
     font-size: 3.5vw;
   }
 }
@@ -134,10 +144,9 @@ width: 46.5vw;
             -moz-box-shadow: 0 2px 9px 5px rgba(41, 41, 40, 1);
             box-shadow: 0 2px 9px 5px rgba(41, 41, 40, 1);
             align-items: center;
-            padding-bottom:8vw;
+            padding-bottom:9vw;
             margin-left: 1em;
             margin-top: 1em;
-            margin-bottom: 1em;
             word-wrap: break-word;
             font-size: .75vw;
       }
@@ -155,13 +164,13 @@ width: 46.5vw;
   -moz-box-shadow: 0 2px 9px 5px rgba(41, 41, 40, 1);
   box-shadow: 0 2px 9px 5px rgba(41, 41, 40, 1);
   align-items: flex-start;
-  font-size: 1vw;
+  font-size: 1.5vw;
   list-style: none;
   overflow: hidden;
 }
 
 @media (min-width: 2100px) {
-  #keywords{    
+  #keywords{  
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -169,9 +178,8 @@ width: 46.5vw;
     -moz-box-shadow: 0 2px 9px 5px rgba(41, 41, 40, 1);
     box-shadow: 0 2px 9px 5px rgba(41, 41, 40, 1);
     align-items: flex-start;
-    font-size: .6vw;
+    font-size: .7vw;
     list-style: none;
-    overflow: hidden;
   }
 }
 
@@ -185,6 +193,61 @@ width: 46.5vw;
   #keywords>li{
      padding: .2vw;
   }
+}
+#likeBox{
+  padding-left: 2vw;
+  height: 6vw;
+  position: relative;
+align-items: center;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+
+  align-items: flex-start;
+  font-size: 2vw;
+  list-style: none;
+  overflow: hidden;
+  color: green;
+}
+
+@media (min-width: 2100px) {
+  #likeBox{  
+    padding-left: 2vw;
+  height: 2vw;
+  position: relative;
+align-items: center;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+
+  align-items: flex-start;
+  font-size: .9vw;
+  list-style: none;
+  overflow: hidden;
+  color: green;
+  }
+}
+
+@media (max-width: 1200px) {
+  #likeBox{  
+    padding-left: 2vw;
+  height: 9vw;
+  position: relative;
+align-items: center;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+
+  align-items: flex-start;
+  font-size: 3.5vw;
+  list-style: none;
+  overflow: hidden;
+  color: green;
+  }
+}
+#nay{
+  color: red;
+  padding-left: 2vw;
 }
 
 #fileChooseButt{

@@ -1,73 +1,82 @@
-
-
-
 <a href="/upload" id="upload" class="navLinks">upload</a>
 <h1>MuhWalls</h1>
 
 
 <br>
 <nav>
-    <a href="/" class="navLinks">All</a>
-<a href="/16:9" class="navLinks">16:9 only</a>
-<a href="/UltraWide" class="navLinks">Ultra Wide</a>
-<a href="/1080P" class="navLinks">1080P</a>
-<a href="/1440P" class="navLinks">1440P</a>
-<a href="/4k" class="navLinks">4K</a>
+  <a href="/" class="navLinks">All</a>
+  <a href="/16:9" class="navLinks">16:9 only</a>
+  <a href="/UltraWide" class="navLinks">Ultra Wide</a>
+  <a href="/1080P" class="navLinks">1080P</a>
+  <a href="/1440P" class="navLinks">1440P</a>
+  <a href="/4k" class="navLinks">4K</a>
 
-<div class="Sort By">
-  <button onclick="myFunction()" class="dropbtn">Sort By &#9660</button>
-  <div id="myDropdown" class="dropdown-content">
-    <a href="/date" class="navLinks">Oldest~Newest</a>
-    <a href="/daterev" class="navLinks">Newest~Oldest</a>
-    <a href="/tall" class="navLinks">Tall~Small</a>
-    <a href="/small" class="navLinks">small~Tall</a>
-
-
+  <div class="Sort By">
+    <button onclick="myFunction()" class="dropbtn">Sort By &#9660</button>
+    <div id="myDropdown" class="dropdown-content">
+      <a href="/date" class="navLinks">Oldest~Newest</a>
+      <a href="/daterev" class="navLinks">Newest~Oldest</a>
+      <a href="/tall" class="navLinks">Tall~Small</a>
+      <a href="/small" class="navLinks">small~Tall</a>
 
 
-  </div>
+
+
+    </div>
     <form action="search" id="search" method="post" enctype="multipart/form-data">
-  search<input type="text" name="search"  id="nameInput" value="" /> 
-  <input type="submit" id="searchButt" value="search" />
- </form>
-</div>
-<script>
-  /* When the user clicks on the button, 
-  toggle between hiding and showing the dropdown content */
-  function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-  }
+      search<input type="text" name="search" id="nameInput" value="" />
+      <input type="submit" id="searchButt" value="search" />
+    </form>
+  </div>
+  <script>
+    /* When the user clicks on the button, 
+    toggle between hiding and showing the dropdown content */
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
 
-  // Close the dropdown if the user clicks outside of it
-  window.onclick = function (event) {
-    if (!event.target.matches('.dropbtn')) {
-      var dropdowns = document.getElementsByClassName("dropdown-content");
-      var i;
-      for (i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-          openDropdown.classList.remove('show');
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function (event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
         }
       }
     }
-  }
-</script>
-  
+  </script>
 
-  
+
+
 </nav>
 <div id="pix">
   {{# each fileName}}
   <div class="lazy" id="picBox">
 
     <a href={{this.name}}>
-      <img class="lazy" data-src={{this.name}} alt={{this.newName}} /> 
-      </a>
-   Name: <a class="lazy" href={{this.name}}> {{this.newName}}</a> <br> 
-      Date Uploaded:{{this.date}}<br>
-      Resolution:{{this.width}}x{{this.height}} <br>
-    Aspect Ratio : <a href="/img+{{this.aspectRatio}}">{{this.aspectRatio}}</a> <br>
-  <ul class="lazy" id="keywords">  {{# each this.keywords}}<li><a href="/img+{{this}}">{{this}}</a></li>{{/each}}</ul>
+      <img class="lazy" data-src={{this.name}} alt={{this.newName}} />
+    </a>
+    Name: <a class="lazy" href={{this.name}}> {{this.newName}}</a> <br>
+    Date Uploaded:{{this.date}}<br>
+    Resolution:{{this.width}}x{{this.height}} <br>
+    Aspect Ratio : <a class="lazy" href="/img+{{this.aspectRatio}}">{{this.aspectRatio}}</a>
+
+    <div id="likeBox">
+      <form action="like" method="post">
+        <button name="like" type="submit" value={{this.name}}>Like</button>
+        <div id="yay">Lieks:{{this.upboats}}</div>
+      </form>
+
+        <form action="dlike" method="post">
+          <button name="dlike" type="submit" value={{this.name}}>Bad</button>
+          <div id="nay">Bads:{{this.downboats}}</div>
+        </form>
+    </div>
+    <ul class="lazy" id="keywords"> {{# each this.keywords}}<li><a href="/img+{{this}}">{{this}}</a></li>{{/each}}</ul>
 
 
   </div>
