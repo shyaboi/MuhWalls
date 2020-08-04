@@ -58,7 +58,7 @@
   {{# each fileName}}
   <div class="lazy" id="picBox">
 
-    <a href={{this.name}}>
+    <a class="lazy"  href={{this.name}}>
       <img class="lazy" data-src={{this.name}} alt={{this.newName}} />
     </a>
     Name: <a class="lazy" href={{this.name}}> {{this.newName}}</a> <br>
@@ -66,18 +66,18 @@
     Resolution:{{this.width}}x{{this.height}} <br>
     Aspect Ratio : <a class="lazy" href="/img+{{this.aspectRatio}}">{{this.aspectRatio}}</a>
 
-    <div id="likeBox">
+    <div id="likeBox" class="lazy">
       <form>
-        <button class="likeButt" id="likeButt" name="like" type="submit" value={{this.name}}>Like</button>
-        <div id="yay{{this.name}}" class="yayBox">Likes:{{this.upboats}}</div>
+        <button class="likeButt lazy" id="likeButt" name="like" type="submit" value={{this.name}}>Like</button>
+        <div id="yay{{this.name}}" class="yayBox lazy">Likes:{{this.upboats}}</div>
       </form>
 
-        <form>
-          <button class="dLikeButt button tr_danger" data-color='danger' id="dLikeButt" name="dlike" type="submit" value={{this.name}}>Bad</button>
-          <div id="nay{{this.name}}" class="nayBox">Bads:{{this.downboats}}</div>
+        <form class="lazy">
+          <button class="dLikeButt button tr_danger lazy" data-color='danger' id="dLikeButt" name="dlike" type="submit" value={{this.name}}>Bad</button>
+          <div  id="nay{{this.name}}" class="nayBox lazy">Bads:{{this.downboats}}</div>
         </form>
     </div>
-    <ul class="lazy" id="keywords">{{# each this.keywords}}<li><a href="/img+{{this}}">{{this}}</a></li>{{/each}}</ul>
+    <ul class="lazy" id="keywords">{{# each this.keywords}}<li class="lazy"><a class="lazy" href="/img+{{this}}">{{this}}</a></li>{{/each}}</ul>
 
 
   </div>
