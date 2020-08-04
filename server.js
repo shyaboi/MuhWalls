@@ -905,8 +905,8 @@ app
             counter +
             files.filetoupload.name.replace(/ |,|([()])|/g, "");
           // console.log(newpath);
-          let nam = fields.newName;
-          let kW = fields.keywords;
+          let nam = fields.newName.toLowerCase();
+          let kW = fields.keywords.toLowerCase();
           
           fs.copyFile(oldpath, newpath, function (err) {
             path.dirname("./img/");
