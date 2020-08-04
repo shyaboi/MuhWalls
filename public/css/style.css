@@ -8,9 +8,14 @@
     width: 300px;
   }
 }
+body::-webkit-scrollbar {
+  display: none;
+}
 
 
 body{
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
     background: rgb(238,174,202);
     background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
 }
@@ -111,13 +116,13 @@ background-color: #000;
 #picBox{
     position: relative;
 height: 32vw;
-width: 46.5vw;
+width: 48.5vw;
     -webkit-box-shadow: 0 2px 9px 5px rgba(41, 41, 40, 1);
     -moz-box-shadow: 0 2px 9px 5px rgba(41, 41, 40, 1);
     box-shadow: 0 2px 9px 5px rgba(41, 41, 40, 1);
     align-items: center;
     padding-bottom:13vw;
-    margin-left: 1em;
+    margin-left: .5em;
     margin-top: 1em;
     margin-bottom: 4em;
     word-wrap: break-word;
@@ -142,8 +147,8 @@ width: 105vw;
 @media (min-width: 2100px) {
     #picBox {
         position: relative;
-        height: 7vw;
-        width: 11vw;
+        height: 13vw;
+        width: 19vw;
             -webkit-box-shadow: 0 2px 9px 5px rgba(41, 41, 40, 1);
             -moz-box-shadow: 0 2px 9px 5px rgba(41, 41, 40, 1);
             box-shadow: 0 2px 9px 5px rgba(41, 41, 40, 1);
