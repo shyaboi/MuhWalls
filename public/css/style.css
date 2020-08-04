@@ -1,10 +1,10 @@
 @media (max-width: 1200px) {
   button {
     width: 200px;
-  height: 50px;}
+  height: 75px;}
 
   input{
-    height: 50px;
+    height: 75px;
     width: 300px;
   }
 }
@@ -149,9 +149,10 @@ width: 48.5vw;
 width: 105vw;
     color: wheat;
     margin: 0;
-    padding: 0 0 10em 0;
+    padding: 0 0 13em 0;
     font-size: 3.5vw;
-    margin-bottom: 8em;
+    margin-bottom: 10em;
+    
 
   }
 }
@@ -165,7 +166,8 @@ width: 105vw;
             -moz-box-shadow: 0 2px 9px 5px rgba(41, 41, 40, 1);
             box-shadow: 0 2px 9px 5px rgba(41, 41, 40, 1);
             align-items: center;
-            padding-bottom:9vw;
+            padding-bottom:13vw;
+            margin-bottom: 5em;
             margin-left: 1em;
             margin-top: 1em;
             word-wrap: break-word;
@@ -229,7 +231,7 @@ width: 105vw;
   }
 }
 #likeBox{
-  padding-left: 18vw;
+  padding-left: 17.5vw;
   height: 6vw;
   position: relative;
 align-items: center;
@@ -245,16 +247,15 @@ align-items: center;
 
 @media (min-width: 2100px) {
   #likeBox{  
-    padding-left: 2vw;
-  height: 2vw;
+    padding-left: 6.35vw;
+  height: 3vw;
   position: relative;
 align-items: center;
   text-align: center;
   display: flex;
   flex-wrap: wrap;
-
+font-size: 25px;
   align-items: flex-start;
-  font-size: .9vw;
   list-style: none;
   overflow: hidden;
   }
@@ -262,30 +263,39 @@ align-items: center;
 
 @media (max-width: 1200px) {
   #likeBox{  
-    padding-left: 2vw;
-  height: 9vw;
+    padding-left: 30vw;
+  height: 12vw;
   position: relative;
 align-items: center;
   text-align: center;
   display: flex;
   flex-wrap: wrap;
-
   align-items: flex-start;
   font-size: 3.5vw;
   list-style: none;
   overflow: hidden;
+
   }
 }
 
 #likeButt{
-  font-size: 2vw;
+  font-size: 40px;
   background-color: green;
 }
 
 #dLikeButt{
-  font-size: 2vw;
+  font-size: 40px;
   background-color: red;
 }
+
+
+
+@media (min-width: 2100px) {
+  #likeButt{ font-size: 25px;}
+  #dLikeButt{ font-size: 25px;}}
+  @media (max-width: 2100px) {
+    #likeButt{ font-size: 55px;}
+    #dLikeButt{ font-size: 55px;}}
 
 .yayBox{
   color: green;
