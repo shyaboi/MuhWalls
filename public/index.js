@@ -35,10 +35,40 @@ $(function() {
 });
 
 
-$(".likeButt").click(function(){
+$(".likeButt").click(function(event){
+    event.preventDefault();
+    const linkName = $(this).attr("value")
     $.post("/like",
-    {},
+    {"name":linkName},
     function(data, status){
-      alert("Data: " + data + "\nStatus: " + status);
+        $(this).toastr({
+            text_heading: 'MuhWalls 2',
+            text_body: data,
+            align: 'center',
+            status: status
+          });
+
+         
     });
+
+
   });
+
+  $(".likeButt").click(function(){
+    const linkNameG = $(this).attr("value")
+//    const lID =  JSON.stringify(`yay${linkNameG}`);
+    setTimeout(() => {
+  $.get( "/donus", {"name":linkNameG}, function( data ) {
+    // $( ".result" ).html( data );
+    document.getElementById("yay"+linkNameG).innerHTML = "Likes:"+data;
+    // console.log(lID,  data)
+        
+});
+}, 1000);
+})
+
+  $("a[href='#top']").click(function() {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+    return false;
+  });
+

@@ -69,7 +69,7 @@
     <div id="likeBox">
       <form>
         <button class="likeButt" id="likeButt" name="like" type="submit" value={{this.name}}>Like</button>
-        <div id="yay">Lieks:{{this.upboats}}</div>
+        <div id="yay{{this.name}}">Likes:{{this.upboats}}</div>
       </form>
 
         <form action="dlike" method="post">
@@ -83,3 +83,4 @@
   </div>
   {{/each}}
 </div>
+<a id="topButt" href='#top'>^</a>  

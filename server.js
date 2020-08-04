@@ -145,6 +145,9 @@ app.get("/topbad", (req, res) => {
   // console.log(ok)
 });
 
+
+
+
 app.get("/date", (req, res) => {
   const getAll = () => {
     MongoClient.connect(
@@ -295,14 +298,17 @@ app.get("/small", (req, res) => {
   getAll();
   // console.log(ok)
 });
-
+var bodyParser = require('body-parser'); 
+const { json } = require("body-parser");
+app.use(bodyParser.json()); // to support JSON bodies
+app.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bodies
 app.post("/like", (req, res) => { 
-  const okis = req.headers.referer
-  const okys = okis.match(/\=(.*)/)[1]
-    console.log(okys)
+  const okis = req.body.name
+
+  const okys = okis
     
-    res.json(okys.slice(6)+" upvoted") ;   
-    console.log("thing gotten")
+    res.json(okys + " upvoted") ;   
+    // console.log(okys)
     let q = {name:okys}
 
     MongoClient.connect(
@@ -565,7 +571,6 @@ app.get("/1440P", (req, res) => {
  })
 
    
-    app.get(`/like`, (req, res) => {res.write("<a href="/">");  res.end();})
 
 
 
@@ -609,7 +614,7 @@ app.get(`/search+:searchwords`, (req, res) => {
 
 
 
-        // ---------------------------------------------------------s check and slice
+        // ---------------------------------------------------------search check and slice
         if (ar2 === undefined || ar2 === null) {
           console.log("free search fields sp2")
         }else{
@@ -786,8 +791,30 @@ app.get("/upload", (req, res) => {
 });
 
 app.get("/donus", (req, res) => {
-  res.json(`${arrayOfFiles}`);
+  // console.log(req.query.name)
+  const wallVoteName = req.query.name
+
+  MongoClient.connect(
+    mongoDB,
+    { useNewUrlParser: true, useUnifiedTopology: true },
+    function (err, db) {
+      if (err) throw err;
+      var dbo = db.db("donu");
+      var mysort = { upboats: -1 };
+      dbo
+        .collection("Wallpapers")
+        .find({name:wallVoteName})
+        .sort(mysort)
+        .toArray(function (err, result) {
+          if (err) throw err;
+          // const results = result.map((wall) => {
+          //   return wall;
+          // });
+          const upvotes = result[0].upboats
+          console.log(result[0].upboats)
+  res.json(upvotes);
 });
+})})
 
 app.get("/toobig", (req, res) => {
   res.write(`<script> var player =  iframe.getElementById('player');

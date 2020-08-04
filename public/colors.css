@@ -1,0 +1,44 @@
+
+.tr_success {
+    background: #32a852;
+    color: white;
+    border: 1px solid #26823f;
+}
+.tr_success:hover {
+    background: #257c3d;
+    color: white;
+    border: 1px solid #19562a;
+}
+
+.tr_info {
+    background: #326ba8;
+    color: white;
+    border: 1px solid #326ba8;
+}
+.tr_info:hover {
+    background: #275382;
+    color: white;
+    border: 1px solid #224871;
+}
+
+.tr_notice {
+    background: #d9b725;
+    color: white;
+    border: 1px solid #d9b725;
+}
+.tr_notice:hover {
+    background: #ba9d20;
+    color: white;
+    border: 1px solid #98801a;
+}
+
+.tr_danger {
+    background: #a83236;
+    color: white;
+    border: 1px solid #a83236;
+}
+.tr_danger:hover {
+    background: #812629;
+    color: white;
+    border: 1px solid #702124;
+}
