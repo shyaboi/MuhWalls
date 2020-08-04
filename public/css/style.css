@@ -25,7 +25,9 @@ img{
     width: 100%;
 }
 
-
+#topNav{
+  padding: 3rem;
+}
 .navLinks{
     padding: 1.5vw;
     font-size: 35px;

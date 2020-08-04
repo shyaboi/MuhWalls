@@ -1,16 +1,16 @@
 <a href="/upload" id="upload" class="navLinks">upload</a>
-<h1>MuhWalls</h1>
+<button type="submit" id="homeButt">MuhWalls</button>
 
 
 <br>
-<nav>
+<nav id="topNav">
   <a href="/" class="navLinks">Top Liked</a>
   <a href="/topbad" class="navLinks">Top Bad</a>
-  <a href="/16:9" class="navLinks">16:9 only</a>
-  <a href="/UltraWide" class="navLinks">Ultra Wide</a>
-  <a href="/1080P" class="navLinks">1080P</a>
-  <a href="/1440P" class="navLinks">1440P</a>
-  <a href="/4k" class="navLinks">4K</a>
+  <a href="/16:9" class="navLinks">16:9 Only</a>
+  <a href="/UltraWide" class="navLinks">Ultra Wide Only</a>
+  <a href="/1080P" class="navLinks">1080P Only</a>
+  <a href="/1440P" class="navLinks">1440P Only</a>
+  <a href="/4k" class="navLinks">4K Only</a>
 
   <div class="Sort By">
     <button onclick="myFunction()" class="dropbtn">Sort By &#9660</button>
@@ -67,8 +67,8 @@
     Aspect Ratio : <a class="lazy" href="/img+{{this.aspectRatio}}">{{this.aspectRatio}}</a>
 
     <div id="likeBox">
-      <form action="like" method="post">
-        <button name="like" type="submit" value={{this.name}}>Like</button>
+      <form>
+        <button class="likeButt" id="likeButt" name="like" type="submit" value={{this.name}}>Like</button>
         <div id="yay">Lieks:{{this.upboats}}</div>
       </form>
 

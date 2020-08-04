@@ -33,3 +33,12 @@ $(function() {
  $(document).ready(function(){
     $(this).scrollTop(localStorage.getItem("scrollPosition"));
 });
+
+
+$(".likeButt").click(function(){
+    $.post("/like",
+    {},
+    function(data, status){
+      alert("Data: " + data + "\nStatus: " + status);
+    });
+  });

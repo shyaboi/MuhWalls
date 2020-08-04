@@ -296,6 +296,31 @@ app.get("/small", (req, res) => {
   // console.log(ok)
 });
 
+app.post("/like", (req, res) => { 
+  const okis = req.headers.referer
+  const okys = okis.match(/\=(.*)/)[1]
+    console.log(okys)
+    
+    res.json("things") ;   
+    console.log("thing gotten")
+    let q = {name:okys}
+
+    MongoClient.connect(
+      mongoDB,
+      { useNewUrlParser: true, useUnifiedTopology: true },
+      function (err, db) {
+        if (err) throw err;
+        var dbo = db.db("donu");
+        dbo.collection("Wallpapers").updateOne(q, { $inc: { upboats:1} }, function (err, res) {
+          if (err) throw err;
+          console.log("\x1b[36m", "1 document inserted");
+        });
+        
+      });
+    db.close();
+
+  })
+
 app.get("/16:9", (req, res) => {
   const getAll = () => {
     MongoClient.connect(
@@ -488,31 +513,30 @@ app.get("/1440P", (req, res) => {
 
 
 
-app.post(`/like`, (req, res) => {
-  var form = new formidable.IncomingForm();
-  form.parse(req, function (err, fields, files) {
-    const likeName = JSON.stringify(fields.like)
-    const ln = likeName.slice(1, -1);
-    let q = {name:ln}
-    console.log(q)
-    MongoClient.connect(
-      mongoDB,
-      { useNewUrlParser: true, useUnifiedTopology: true },
-      function (err, db) {
-        if (err) throw err;
-        var dbo = db.db("donu");
-        dbo.collection("Wallpapers").updateOne(q, { $inc: { upboats:1} }, function (err, res) {
-          if (err) throw err;
-          console.log("\x1b[36m", "1 document inserted");
-        });
+// app.post(`/like`, (req, res) => {
+//   var form = new formidable.IncomingForm();
+//   form.parse(req, function (err, fields, files) {
+//     const likeName = JSON.stringify(fields.like)
+//     const ln = likeName.slice(1, -1);
+//     let q = {name:ln}
+//     console.log(q)
+//     MongoClient.connect(
+//       mongoDB,
+//       { useNewUrlParser: true, useUnifiedTopology: true },
+//       function (err, db) {
+//         if (err) throw err;
+//         var dbo = db.db("donu");
+//         dbo.collection("Wallpapers").updateOne(q, { $inc: { upboats:1} }, function (err, res) {
+//           if (err) throw err;
+//           console.log("\x1b[36m", "1 document inserted");
+//         });
         
-      });
-    }
-    );
-    res.redirect("/")
-    db.close();
+//       });
+//     }
+//     );
+//     db.close();
         
- })
+//  })
 
  app.post(`/dlike`, (req, res) => {
   var form = new formidable.IncomingForm();
