@@ -301,7 +301,7 @@ app.post("/like", (req, res) => {
   const okys = okis.match(/\=(.*)/)[1]
     console.log(okys)
     
-    res.json("things") ;   
+    res.json(okys.slice(6)+" upvoted") ;   
     console.log("thing gotten")
     let q = {name:okys}
 
