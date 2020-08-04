@@ -39,7 +39,7 @@ img{
   padding: 3rem;
 }
 .navLinks{
-    padding: 1.5vw;
+    margin:1vw;
     font-size: 35px;
 }
 
@@ -275,6 +275,16 @@ align-items: center;
   list-style: none;
   overflow: hidden;
   }
+}
+
+#likeButt{
+  font-size: 2vw;
+  background-color: green;
+}
+
+#dLikeButt{
+  font-size: 2vw;
+  background-color: red;
 }
 
 .yayBox{
