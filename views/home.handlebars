@@ -69,12 +69,12 @@
     <div id="likeBox">
       <form>
         <button class="likeButt" id="likeButt" name="like" type="submit" value={{this.name}}>Like</button>
-        <div id="yay{{this.name}}">Likes:{{this.upboats}}</div>
+        <div id="yay{{this.name}}" class="yayBox">Likes:{{this.upboats}}</div>
       </form>
 
-        <form action="dlike" method="post">
-          <button name="dlike" type="submit" value={{this.name}}>Bad</button>
-          <div id="nay">Bads:{{this.downboats}}</div>
+        <form>
+          <button class="dLikeButt" id="dLikeButt" name="dlike" type="submit" value={{this.name}}>Bad</button>
+          <div id="nay{{this.name}}" class="nayBox">Bads:{{this.downboats}}</div>
         </form>
     </div>
     <ul class="lazy" id="keywords"> {{# each this.keywords}}<li><a href="/img+{{this}}">{{this}}</a></li>{{/each}}</ul>

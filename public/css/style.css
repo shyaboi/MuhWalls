@@ -20,7 +20,7 @@ body::-webkit-scrollbar {
   position: fixed;
   bottom: 0;
   left: 0;
- font-size: 145px;
+ font-size: 165px;
 }
 
 body{
@@ -229,7 +229,7 @@ width: 105vw;
   }
 }
 #likeBox{
-  padding-left: 2vw;
+  padding-left: 18vw;
   height: 6vw;
   position: relative;
 align-items: center;
@@ -241,7 +241,6 @@ align-items: center;
   font-size: 2vw;
   list-style: none;
   overflow: hidden;
-  color: green;
 }
 
 @media (min-width: 2100px) {
@@ -258,7 +257,6 @@ align-items: center;
   font-size: .9vw;
   list-style: none;
   overflow: hidden;
-  color: green;
   }
 }
 
@@ -276,10 +274,14 @@ align-items: center;
   font-size: 3.5vw;
   list-style: none;
   overflow: hidden;
-  color: green;
   }
 }
-#nay{
+
+.yayBox{
+  color: green;
+
+}
+.nayBox{
   color: red;
   padding-left: 2vw;
 }

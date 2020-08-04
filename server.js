@@ -545,29 +545,27 @@ app.get("/1440P", (req, res) => {
 //  })
 
  app.post(`/dlike`, (req, res) => {
-  var form = new formidable.IncomingForm();
-  form.parse(req, function (err, fields, files) {
-    const dlikeName = JSON.stringify(fields.dlike)
-    const dln = dlikeName.slice(1, -1);
-    let dq = {name:dln}
-    console.log(dq)
+  const okis = req.body.name
+
+  const okys = okis
+    
+    res.json(okys + " upvoted") ;   
+    // console.log(okys)
+    let q = {name:okys}
+
     MongoClient.connect(
       mongoDB,
       { useNewUrlParser: true, useUnifiedTopology: true },
       function (err, db) {
         if (err) throw err;
         var dbo = db.db("donu");
-        dbo.collection("Wallpapers").updateOne(dq, { $inc: { downboats:1} }, function (err, res) {
+        dbo.collection("Wallpapers").updateOne(q, { $inc: { downboats:1} }, function (err, res) {
           if (err) throw err;
           console.log("\x1b[36m", "1 document inserted");
         });
         
       });
-    }
-    );
-    res.redirect("/")
     db.close();
-        
  })
 
    
@@ -790,7 +788,7 @@ app.get("/upload", (req, res) => {
   return res.end();
 });
 
-app.get("/donus", (req, res) => {
+app.get("/piclike", (req, res) => {
   // console.log(req.query.name)
   const wallVoteName = req.query.name
 
@@ -812,6 +810,32 @@ app.get("/donus", (req, res) => {
           // });
           const upvotes = result[0].upboats
           console.log(result[0].upboats)
+  res.json(upvotes);
+});
+})})
+
+app.get("/picdLike", (req, res) => {
+  // console.log(req.query.name)
+  const wallVoteName = req.query.name
+
+  MongoClient.connect(
+    mongoDB,
+    { useNewUrlParser: true, useUnifiedTopology: true },
+    function (err, db) {
+      if (err) throw err;
+      var dbo = db.db("donu");
+      var mysort = { downboats: -1 };
+      dbo
+        .collection("Wallpapers")
+        .find({name:wallVoteName})
+        .sort(mysort)
+        .toArray(function (err, result) {
+          if (err) throw err;
+          // const results = result.map((wall) => {
+          //   return wall;
+          // });
+          const upvotes = result[0].downboats
+          console.log(result[0].downboats)
   res.json(upvotes);
 });
 })})
