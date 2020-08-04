@@ -106,6 +106,45 @@ app.get("/", (req, res) => {
   // console.log(ok)
 });
 
+
+app.get("/topbad", (req, res) => {
+  const getAll = () => {
+    MongoClient.connect(
+      mongoDB,
+      { useNewUrlParser: true, useUnifiedTopology: true },
+      function (err, db) {
+        if (err) throw err;
+        var dbo = db.db("donu");
+        var mysort = { downboats: -1 };
+        dbo
+          .collection("Wallpapers")
+          .find({})
+          .sort(mysort)
+          .toArray(function (err, result) {
+            if (err) throw err;
+            // for (let i = 0; i < result.length; i++) {
+            //   const all = result[i];
+            // console.log("\x1b[35m", element.name);
+            // var getAl = all.name
+            // console.log(getAl)
+            const results = result.map((wall) => {
+              return wall;
+            });
+
+            const fileName = results;
+            // }
+            db.close();
+            res.render(`home`, {
+              fileName: fileName,
+            });
+          });
+      }
+    );
+  };
+  getAll();
+  // console.log(ok)
+});
+
 app.get("/date", (req, res) => {
   const getAll = () => {
     MongoClient.connect(
@@ -265,11 +304,11 @@ app.get("/16:9", (req, res) => {
       function (err, db) {
         if (err) throw err;
         var dbo = db.db("donu");
-        var heightSort = { name: 1 };
+        var voteSort = { upboats: -1 };
         dbo
           .collection("Wallpapers")
           .find({ aspectRatio: "16:9" })
-          .sort(heightSort)
+          .sort(voteSort)
           .toArray(function (err, result) {
             if (err) throw err;
             // for (let i = 0; i < result.length; i++) {
@@ -303,11 +342,11 @@ app.get("/UltraWide", (req, res) => {
       function (err, db) {
         if (err) throw err;
         var dbo = db.db("donu");
-        var heightSort = { name: 1 };
+        var voteSort = { upboats:-1 };
         dbo
           .collection("Wallpapers")
           .find({ aspectRatio: "UltraWide" })
-          .sort(heightSort)
+          .sort(voteSort)
           .toArray(function (err, result) {
             if (err) throw err;
             // for (let i = 0; i < result.length; i++) {
@@ -341,11 +380,11 @@ app.get("/1080P", (req, res) => {
       function (err, db) {
         if (err) throw err;
         var dbo = db.db("donu");
-        var heightSort = { name: 1 };
+        var voteSort = { upboats: -1 };
         dbo
           .collection("Wallpapers")
           .find({ height: 1080, width: 1920 })
-          .sort(heightSort)
+          .sort(voteSort)
           .toArray(function (err, result) {
             if (err) throw err;
             // for (let i = 0; i < result.length; i++) {
@@ -379,11 +418,11 @@ app.get("/4k", (req, res) => {
       function (err, db) {
         if (err) throw err;
         var dbo = db.db("donu");
-        var heightSort = { name: 1 };
+        var voteSort = { upboats: -1 };
         dbo
           .collection("Wallpapers")
           .find({ height: 2160, width: 3840 })
-          .sort(heightSort)
+          .sort(voteSort)
           .toArray(function (err, result) {
             if (err) throw err;
             // for (let i = 0; i < result.length; i++) {
@@ -417,11 +456,11 @@ app.get("/1440P", (req, res) => {
       function (err, db) {
         if (err) throw err;
         var dbo = db.db("donu");
-        var heightSort = { name: 1 };
+        var voteSort = { upboats: -1 };
         dbo
           .collection("Wallpapers")
           .find({ height: 1440, width: 2560 })
-          .sort(heightSort)
+          .sort(voteSort)
           .toArray(function (err, result) {
             if (err) throw err;
             // for (let i = 0; i < result.length; i++) {
@@ -668,7 +707,7 @@ app.get("/img+:keyword?", function (req, res) {
         keyP = keyParam.substr(1);
         if (err) throw err;
         var dbo = db.db("donu");
-        var keySearch = { name: 1 };
+        var keySearch = { upboats: -1 };
         dbo
           .collection("Wallpapers")
           .find({

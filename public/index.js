@@ -20,10 +20,9 @@ $(window).on('scroll', function() {
    console.log(scrollPosition) 
    return scrollPosition
 });
-console.log(scrollPosition)
+
 $(function() {
     $(window).unload(function() {
-        
        localStorage.setItem("scrollPosition", scrollPosition);
     });
     if(localStorage.scrollPosition) {

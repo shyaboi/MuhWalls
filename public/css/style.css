@@ -124,7 +124,7 @@ width: 48.5vw;
     padding-bottom:13vw;
     margin-left: .5em;
     margin-top: 1em;
-    margin-bottom: 4em;
+    margin-bottom: 6em;
     word-wrap: break-word;
     font-size: 1.5vw;
     text-align: center;
@@ -290,7 +290,19 @@ align-items: center;
     font-size: 45px;
 }
 #search{
+  font-size: 2vw;
   float: right;
+}
+
+#nameInput{
+  font-size: 2vw;
+  height: 50px;
+  width: 300px;
+}
+
+#searchButt{
+  width: 200px;
+  height: 50px
 }
 
 
