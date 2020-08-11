@@ -10,7 +10,6 @@ var PORT = process.env.port || 4000;
 const exPORT = process.env.PORT || 8080;
 require("dotenv").config();
 const donus = process.env.MONGO_THING;
-var fs = require("fs");
 
 const mongoDB = `mongodb+srv://shyaboi:${donus}@cluster0.zqw64.azure.mongodb.net/donu?retryWrites=true&w=majority`;
 var exphbs = require("express-handlebars");
@@ -58,8 +57,8 @@ app.use(express.static("public/views/layouts"));
 
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + "./public"));
-app.use(express.static(__dirname + "/public/css"));
 app.use(express.static(__dirname + "/public/"));
+app.use(express.static(__dirname + "/public/css"));
 
 app.get("/css/styles.css", function (req, res) {
   res.send("css/styles.css");
