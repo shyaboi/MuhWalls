@@ -10,6 +10,9 @@ var PORT = process.env.port || 4000;
 const exPORT = process.env.PORT || 8080;
 require("dotenv").config();
 const donus = process.env.MONGO_THING;
+const favicon = require('serve-favicon');
+
+app.use(favicon('./favicon.ico'));
 
 const mongoDB = `mongodb+srv://shyaboi:${donus}@cluster0.zqw64.azure.mongodb.net/donu?retryWrites=true&w=majority`;
 var exphbs = require("express-handlebars");
