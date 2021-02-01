@@ -984,7 +984,7 @@ app
                 `<h2>Your wallpaper has been uploaded, it will show up on the 
 <a href="/wallpapers/">homepage</a> 
 soon mate!</h2> <div id="newSlice">
-<img id="upPic" src=${newSlice}><a href=${newSlice}>${dinus}</a></img><br>Resolution: ${
+<img id="upPic" src=/wallpapers${newSlice}><a href=/wallpapers${newSlice}>${dinus}</a></img><br>Resolution: ${
                   dimensions.width + "x" + dimensions.height
                 }
 </body>
