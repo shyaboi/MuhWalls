@@ -584,13 +584,11 @@ app.get("/wallpapers/1440P", (req, res) => {
 
 
 app.post("/wallpapers/search", (req, res) => {
-  var form = new formidable.IncomingForm();
-  form.parse(req, function (err, fields, files) {
-    let searchRaw = fields.search;
+  console.log(req.body)
+    let searchRaw = req.body.search;
     var searchCleaned = searchRaw.replace(/[ ,]+/g, ",");
-    res.redirect(`/search+${[searchCleaned]}`);
+    res.redirect(`/wallpapers/search+${[searchCleaned]}`);
   });
-});
 
 app.get(`/wallpapers/search+:searchwords`, (req, res) => {
   let sw = req.params.searchwords;
