@@ -785,7 +785,7 @@ app.get("/wallpapers/upload", (req, res) => {
   res.write('<link rel="stylesheet" href="/style.css">');
 
   res.write(
-    '<form action="/wallpapers/upload/fileupload" id="upladContainer" method="post" enctype="multipart/form-data">'
+    '<form action="/upload/fileupload" id="upladContainer" method="post" enctype="multipart/form-data">'
   );
   res.write('<input type="file" name="filetoupload" id="fileChooseButt"><br>');
   res.write(
@@ -871,11 +871,11 @@ app.get("*", (rq, rs) => {
 
 var counter = 0;
 app
-  .post("wallpapers/upload/fileupload", function (req, res) {
+  .post("/upload/fileupload", function (req, res) {
     // date stamp var
     //  console.log(req);
 
-    if (req.url == "wallpapers/upload/fileupload") {
+    if (req.url == "/upload/fileupload") {
       var d = new Date();
       const y = d.getFullYear();
       var m = d.getMonth() + 1;
