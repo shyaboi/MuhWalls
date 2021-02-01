@@ -871,11 +871,11 @@ app.get("*", (rq, rs) => {
 
 var counter = 0;
 app
-  .post("wallpapers/upload/fileupload", function (req, res) {
+  .post("/upload/fileupload", function (req, res) {
     // date stamp var
     //  console.log(req);
 
-    if (req.url == "/wallpapers/upload/fileupload") {
+    if (req.url == "/upload/fileupload") {
       var d = new Date();
       const y = d.getFullYear();
       var m = d.getMonth() + 1;
