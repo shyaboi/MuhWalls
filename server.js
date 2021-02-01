@@ -64,12 +64,16 @@ app.use(express.static(__dirname + "./public"));
 app.use(express.static(__dirname + "/public/"));
 app.use(express.static(__dirname + "/public/css"));
 
-app.get("/css/styles.css", function (req, res) {
+app.get("/wallpapers/css/styles.css", function (req, res) {
   res.send("css/styles.css");
   res.end();
 });
-app.get("/index.js", function (req, res) {
+app.get("/wallpapers/index.js", function (req, res) {
   res.send("index.js");
+  res.end();
+});
+app.get("/wallpapers/toastr.js", function (req, res) {
+  res.send("toastr.js");
   res.end();
 });
 
@@ -860,7 +864,8 @@ console.log("Server Started on " + exPORT);
 
 app.get("*", (rq, rs) => {
   rs.send(
-    `<h1 id=404 style="color:red">${rq.url}  doesnt exist; <br> 404 son</h1>`
+    `<h1 id=404 style="color:red">${rq.url}  doesnt exist; Sorry if you got here <br> I have been changing the routes a lot. <br>
+    <a href='/wallpapers'>Get Me Home</a></h1>`
   );
 });
 
