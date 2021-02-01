@@ -68,6 +68,10 @@ app.get("/css/styles.css", function (req, res) {
   res.send("css/styles.css");
   res.end();
 });
+app.get("/index.js", function (req, res) {
+  res.send("index.js");
+  res.end();
+});
 
 var arrayOfFiles = fs.readdirSync("./img");
 
