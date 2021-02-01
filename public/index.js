@@ -38,7 +38,7 @@ $(function() {
 $(".likeButt").click(function(event){
     event.preventDefault();
     const linkName = $(this).attr("value")
-    $.post("/like",
+    $.post("/wallpapers/like",
     {"name":linkName},
     function(data, status){
         $(this).toastr({
@@ -58,7 +58,7 @@ $(".likeButt").click(function(event){
     const linkNameG = $(this).attr("value")
 //    const lID =  JSON.stringify(`yay${linkNameG}`);
     setTimeout(() => {
-  $.get( "/piclike", {"name":linkNameG}, function( data ) {
+  $.get( "/wallpapers/piclike", {"name":linkNameG}, function( data ) {
     // $( ".result" ).html( data );
     document.getElementById("yay"+linkNameG).innerHTML = "Likes:"+data;
     // console.log(lID,  data)
@@ -71,7 +71,7 @@ $(".dLikeButt").click(function(event){
     event.preventDefault();
     const linkNameD = $(this).attr("value")
     console.log(linkNameD)
-    $.post("/dlike",
+    $.post("/wallpapers/dlike",
     {"name":linkNameD},
     function(data, status){
         $(this).toastr({
@@ -91,7 +91,7 @@ $(".dLikeButt").click(function(event){
     const linkNameDD = $(this).attr("value")
 //    const lID =  JSON.stringify(`yay${linkNameG}`);
     setTimeout(() => {
-  $.get( "/picdLike", {"name":linkNameDD}, function( data ) {
+  $.get( "/wallpapers/picdLike", {"name":linkNameDD}, function( data ) {
     // $( ".result" ).html( data );
     document.getElementById("nay"+linkNameDD).innerHTML = "Bads:"+data;
     // console.log(lID,  data)
