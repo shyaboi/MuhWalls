@@ -772,7 +772,7 @@ router.get(["/wallpapers/", "/wallpapers//*"], function (req, res, next) {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-app.get("/upload", (req, res) => {
+app.get("/wallpapers/upload", (req, res) => {
   res.writeHead(200, { "Content-Type": "text/html" });
   res.write('<link rel="stylesheet" href="/style.css">');
 
