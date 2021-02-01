@@ -1,131 +1,117 @@
 <div class="uk-container-expand">
 
 
-<nav class="uk-navbar-container uk-margin" uk-navbar>
+  <nav class="uk-navbar-container uk-margin" uk-navbar>
 
     <div class="nav-overlay uk-navbar-left">
 
-        <a class="uk-navbar-item uk-logo" href="#">Dingus Crew Wallpapers</a>
+      <a class="uk-navbar-item uk-logo" href="#">Dingus Crew Wallpapers</a>
 
-        <ul class="uk-navbar-nav">
-            <li class="uk-active"><a href="http://dinguscrew.com/forum" class="navLinks">Forums</a></li>
-            <li class="uk-active"><a href="https://dinguschat.herokuapp.com/home" class="navLinks">Live Chat Room</a></li>
-            <li>
-             <a href="#">Filter Size</a>
-                <div class="uk-navbar-dropdown">
-                    <ul class="uk-nav uk-navbar-dropdown-nav">
-                        <li class="uk-nav-header">Filter by size or aspect ratio:</li>
-                        <li><a href="/wallpapers/16:9" class="navLinks">16:9 Only</a></li>
-                        <li><a href="/wallpapers/1080P" class="navLinks">1080P Only</a></li>
-                        <li><a href="/wallpapers/1440P" class="navLinks">1440P Only</a></li>
-                        <li><a href="/wallpapers/4k" class="navLinks">4K Only</a></li>
-                        <li><a href="/wallpapers/UltraWide" class="navLinks">Ultra Wide Only</a></li>
-                        <li class="uk-nav-divider"></li>
-                        <li><a href="#">Item</a></li>
-                    </ul>
-                </div>
-                </li>
-            <li>
-             <a href="#">Sort By</a>
-                <div class="uk-navbar-dropdown">
-                    <ul class="uk-nav uk-navbar-dropdown-nav">
-                        <li class="uk-nav-header">Sort By:</li>
-                        <li><a href="/wallpapers/date" class="navLinks">Oldest ~ Newest</a></li>
-                        <li><a href="/wallpapers/daterev" class="navLinks">Newest ~ Oldest</a></li>
-                        <li><a href="/wallpapers/tall" class="navLinks">Tall ~ Small</a></li>
-                        <li><a href="/wallpapers/small" class="navLinks">Small ~ Tall</a></li>
-                        <li><a href="/wallpapers/UltraWide" class="navLinks">Ultra Wide Only</a></li>
-                        <li class="uk-nav-divider"></li>
-                        <li><a href="#">Item</a></li>
-                    </ul>
-                </div>
-                </li>
-            <li><a href="/wallpapers/" class="navLinks">Top Liked</a></li>
-            <li><a href="/wallpapers/topbad" class="navLinks">Top Bad</a></li>
-        </ul>
+      <ul class="uk-navbar-nav">
+        <li class="uk-active"><a href="http://dinguscrew.com/forum" class="navLinks">Forums</a></li>
+        <li class="uk-active"><a href="https://dinguschat.herokuapp.com/home" class="navLinks">Live Chat Room</a></li>
+        <li>
+          <a href="#">Filter Size</a>
+          <div class="uk-navbar-dropdown">
+            <ul class="uk-nav uk-navbar-dropdown-nav">
+              <li class="uk-nav-header">Filter by size or aspect ratio:</li>
+              <li><a href="/wallpapers/16:9" class="navLinks">16:9 Only</a></li>
+              <li><a href="/wallpapers/1080P" class="navLinks">1080P Only</a></li>
+              <li><a href="/wallpapers/1440P" class="navLinks">1440P Only</a></li>
+              <li><a href="/wallpapers/4k" class="navLinks">4K Only</a></li>
+              <li><a href="/wallpapers/UltraWide" class="navLinks">Ultra Wide Only</a></li>
+              <li class="uk-nav-divider"></li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <a href="#">Sort By</a>
+          <div class="uk-navbar-dropdown">
+            <ul class="uk-nav uk-navbar-dropdown-nav">
+              <li class="uk-nav-header">Sort By:</li>
+              <li><a href="/wallpapers/date" class="navLinks">Oldest ~ Newest</a></li>
+              <li><a href="/wallpapers/daterev" class="navLinks">Newest ~ Oldest</a></li>
+              <li><a href="/wallpapers/tall" class="navLinks">Tall ~ Small</a></li>
+              <li><a href="/wallpapers/small" class="navLinks">Small ~ Tall</a></li>
+              <li class="uk-nav-divider"></li>
+            </ul>
+          </div>
+        </li>
+        <li><a href="/wallpapers/" class="navLinks">Top Liked</a></li>
+        <li><a href="/wallpapers/topbad" class="navLinks">Top Bad</a></li>
+      </ul>
 
     </div>
 
     <div class="nav-overlay uk-navbar-right">
-      <ul  class="uk-navbar-nav ">
-           <li class='uk-active'> <a href="/wallpapers/upload" id="upload" class="navLinks">upload</a></li>
-</ul>
-        <a class="uk-navbar-toggle" uk-search-icon uk-toggle="target: .nav-overlay; animation: uk-animation-fade" href="#"></a>
+      <ul class="uk-navbar-nav ">
+        <li class='uk-active'> <a href="/wallpapers/upload" id="upload" class="navLinks">upload</a></li>
+      </ul>
+      <a class="uk-navbar-toggle" uk-search-icon uk-toggle="target: .nav-overlay; animation: uk-animation-fade"
+        href="#"></a>
 
     </div>
 
     <div class="nav-overlay uk-navbar-left uk-flex-1" hidden>
 
-        <div class="uk-navbar-item uk-width-expand">
-            <form class="uk-search uk-search-navbar uk-width-1-1" action="/wallpapers/search" id="search" method="post">
-                <input class="uk-search-input" type="text" name="search" id="nameInput" value="" placeholder="Search..." autofocus>
-            </form>
+      <div class="uk-navbar-item uk-width-expand">
+        <form class="uk-search uk-search-navbar uk-width-1-1" action="/wallpapers/search" id="search" method="post">
+          <input class="uk-search-input" type="text" name="search" id="nameInput" value="" placeholder="Search..."
+            autofocus>
+        </form>
+      </div>
+
+      <a class="uk-navbar-toggle" uk-close uk-toggle="target: .nav-overlay; animation: uk-animation-fade" href="#"></a>
+
+    </div>
+
+  </nav>
+
+  <div class="uk-container-expanded uk-align-right">
+    <div class="uk-grid-column-small uk-grid-row-large uk-child-width-1-2@s uk-text-center" uk-grid>
+
+      {{# each fileName}}
+      <div class="lazy uk-card uk-card-default uk-card-body" id="picBox">
+
+        <a class="lazy" href={{this.name}}>
+          <img class="lazy" data-src={{this.name}} alt={{this.newName}}  uk-img/>
+        </a>
+        <div class="uk-grid-column-small uk-grid-row-small uk-child-width-1-2@s uk-text-center" uk-grid>
+          <p>
+            Name: <a class="lazy" href={{this.name}}> {{this.newName}}</a>
+            <br>
+            Date Uploaded:{{this.date}}
+          </p>
+          <p>
+            Resolution:{{this.width}}x{{this.height}}
+            <br>
+            Aspect Ratio : <a class="lazy" href="/img+{{this.aspectRatio}}">{{this.aspectRatio}}</a>
+          </p>
+        </div>
+        
+        <div id="likeBox" class="lazy uk-grid-column-small uk-grid-row-small uk-child-width-1-2@s uk-text-center"
+          uk-grid>
+          <form>
+            <button class="likeButt lazy uk-button uk-button-primary uk-button-large" id="likeButt" name="like"
+              type="submit" value={{this.name}}>Like</button>
+            <div id="yay{{this.name}}" class="yayBox lazy">Likes:{{this.upboats}}</div>
+          </form>
+
+          <form class="lazy">
+            <button class="dLikeButt button uk-button uk-button-danger uk-button-large" id="dLikeButt" name="dlike"
+              type="submit" value={{this.name}}>Bad</button>
+            <div id="nay{{this.name}}" class="nayBox lazy">Bads:{{this.downboats}}</div>
+          </form>
         </div>
 
-        <a class="uk-navbar-toggle" uk-close uk-toggle="target: .nav-overlay; animation: uk-animation-fade" href="#"></a>
-
-    </div>
-
-</nav>
+       <div class="uk-child-width-expand@s" uk-grid>
+          <ul class="lazy uk-list uk-list uk-list-striped uk-column-1-4@l" id="keywords">{{# each this.keywords}}<li class="lazy">
+              <a class="lazy" href="/img+{{this}}">{{this}}</a></li>{{/each}}</ul>
+        </div>
   
-    {{!-- <form >
-      search<input type="text" name="search" id="nameInput" value="" />
-      <input type="submit" id="searchButt" value="search" />
-    </form> --}}
-  </div>
-  <script>
-    /* When the user clicks on the button, 
-    toggle between hiding and showing the dropdown content */
-    function myFunction() {
-      document.getElementById("myDropdown").classList.toggle("show");
-    }
-
-    // Close the dropdown if the user clicks outside of it
-    window.onclick = function (event) {
-      if (!event.target.matches('.dropbtn')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        var i;
-        for (i = 0; i < dropdowns.length; i++) {
-          var openDropdown = dropdowns[i];
-          if (openDropdown.classList.contains('show')) {
-            openDropdown.classList.remove('show');
-          }
-        }
-      }
-    }
-  </script>
-
-
-
-</nav>
-<div id="pix">
-  {{# each fileName}}
-  <div class="lazy" id="picBox">
-
-    <a class="lazy"  href={{this.name}}>
-      <img class="lazy" data-src={{this.name}} alt={{this.newName}} />
-    </a>
-    Name: <a class="lazy" href={{this.name}}> {{this.newName}}</a> <br>
-    Date Uploaded:{{this.date}}<br>
-    Resolution:{{this.width}}x{{this.height}} <br>
-    Aspect Ratio : <a class="lazy" href="/img+{{this.aspectRatio}}">{{this.aspectRatio}}</a>
-
-    <div id="likeBox" class="lazy">
-      <form>
-        <button class="likeButt lazy" id="likeButt" name="like" type="submit" value={{this.name}}>Like</button>
-        <div id="yay{{this.name}}" class="yayBox lazy">Likes:{{this.upboats}}</div>
-      </form>
-
-        <form class="lazy">
-          <button class="dLikeButt button tr_danger lazy" data-color='danger' id="dLikeButt" name="dlike" type="submit" value={{this.name}}>Bad</button>
-          <div  id="nay{{this.name}}" class="nayBox lazy">Bads:{{this.downboats}}</div>
-        </form>
+      </div>
+      {{/each}}
     </div>
-    <ul class="lazy" id="keywords">{{# each this.keywords}}<li class="lazy"><a class="lazy" href="/img+{{this}}">{{this}}</a></li>{{/each}}</ul>
-
-
+    <a id="topButt" href='#top'>^</a>
   </div>
-  {{/each}}
-</div>
-<a id="topButt" href='#top'>^</a>  
 </div>
