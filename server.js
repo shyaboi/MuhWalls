@@ -52,6 +52,7 @@ var picModel = new Schema({
 
 app.use(express.static(path.join(__dirname, "img")));
 app.use("/fileupload", express.static("img"));
+app.use("/wallpapers", express.static("img"));
 app.use("/donus", express.static("img"));
 app.use("/upload", express.static("img"));
 app.use("/img", express.static("img"));
@@ -70,7 +71,7 @@ app.get("/css/styles.css", function (req, res) {
 
 var arrayOfFiles = fs.readdirSync("./img");
 
-app.get("/", (req, res) => {
+app.get("/wallpapers", (req, res) => {
   const getAll = () => {
     MongoClient.connect(
       mongoDB,
@@ -109,7 +110,7 @@ app.get("/", (req, res) => {
 });
 
 
-app.get("/topbad", (req, res) => {
+app.get("/wallpapers/topbad", (req, res) => {
   const getAll = () => {
     MongoClient.connect(
       mongoDB,
@@ -150,7 +151,7 @@ app.get("/topbad", (req, res) => {
 
 
 
-app.get("/date", (req, res) => {
+app.get("/wallpapers/date", (req, res) => {
   const getAll = () => {
     MongoClient.connect(
       mongoDB,
@@ -187,7 +188,7 @@ app.get("/date", (req, res) => {
   getAll();
   // console.log(ok)
 });
-app.get("/daterev", (req, res) => {
+app.get("/wallpapers/daterev", (req, res) => {
   const getAll = () => {
     MongoClient.connect(
       mongoDB,
@@ -225,7 +226,7 @@ app.get("/daterev", (req, res) => {
   // console.log(ok)
 });
 
-app.get("/tall", (req, res) => {
+app.get("/wallpapers/tall", (req, res) => {
   const getAll = () => {
     MongoClient.connect(
       mongoDB,
@@ -263,7 +264,7 @@ app.get("/tall", (req, res) => {
   // console.log(ok)
 });
 
-app.get("/small", (req, res) => {
+app.get("/wallpapers/small", (req, res) => {
   const getAll = () => {
     MongoClient.connect(
       mongoDB,
@@ -329,7 +330,7 @@ app.post("/like", (req, res) => {
 
   })
 
-app.get("/16:9", (req, res) => {
+app.get("/wallpapers/16:9", (req, res) => {
   const getAll = () => {
     MongoClient.connect(
       mongoDB,
@@ -367,7 +368,7 @@ app.get("/16:9", (req, res) => {
   // console.log(ok)
 });
 
-app.get("/UltraWide", (req, res) => {
+app.get("/wallpapers/UltraWide", (req, res) => {
   const getAll = () => {
     MongoClient.connect(
       mongoDB,
@@ -405,7 +406,7 @@ app.get("/UltraWide", (req, res) => {
   // console.log(ok)
 });
 
-app.get("/1080P", (req, res) => {
+app.get("/wallpapers/1080P", (req, res) => {
   const getAll = () => {
     MongoClient.connect(
       mongoDB,
@@ -443,7 +444,7 @@ app.get("/1080P", (req, res) => {
   // console.log(ok)
 });
 
-app.get("/4k", (req, res) => {
+app.get("/wallpapers/4k", (req, res) => {
   const getAll = () => {
     MongoClient.connect(
       mongoDB,
@@ -481,7 +482,7 @@ app.get("/4k", (req, res) => {
   // console.log(ok)
 });
 
-app.get("/1440P", (req, res) => {
+app.get("/wallpapers/1440P", (req, res) => {
   const getAll = () => {
     MongoClient.connect(
       mongoDB,
@@ -546,7 +547,7 @@ app.get("/1440P", (req, res) => {
         
 //  })
 
- app.post(`/dlike`, (req, res) => {
+ app.post(`/wallpapers/dlike`, (req, res) => {
   const okis = req.body.name
 
   const okys = okis
@@ -574,7 +575,7 @@ app.get("/1440P", (req, res) => {
 
 
 
-app.post("/search", (req, res) => {
+app.post("/wallpapers/search", (req, res) => {
   var form = new formidable.IncomingForm();
   form.parse(req, function (err, fields, files) {
     let searchRaw = fields.search;
@@ -583,7 +584,7 @@ app.post("/search", (req, res) => {
   });
 });
 
-app.get(`/search+:searchwords`, (req, res) => {
+app.get(`/wallpapers/search+:searchwords`, (req, res) => {
   let sw = req.params.searchwords;
   // console.log(sw)
   let swSplit = sw.substr(1);
@@ -725,7 +726,7 @@ app.get(`/search+:searchwords`, (req, res) => {
   getAll();
 });
 
-app.get("/img+:keyword?", function (req, res) {
+app.get("/wallpapers/img+:keyword?", function (req, res) {
   let keyParam = req.params.keyword;
 
   const getAll = () => {
@@ -767,7 +768,7 @@ app.get("/img+:keyword?", function (req, res) {
   getAll();
 });
 
-router.get(["/", "//*"], function (req, res, next) {
+router.get(["/wallpapers/", "/wallpapers//*"], function (req, res, next) {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
@@ -790,7 +791,7 @@ app.get("/upload", (req, res) => {
   return res.end();
 });
 
-app.get("/piclike", (req, res) => {
+app.get("/wallpapers/piclike", (req, res) => {
   // console.log(req.query.name)
   const wallVoteName = req.query.name
 
@@ -816,7 +817,7 @@ app.get("/piclike", (req, res) => {
 });
 })})
 
-app.get("/picdLike", (req, res) => {
+app.get("/wallpapers/picdLike", (req, res) => {
   // console.log(req.query.name)
   const wallVoteName = req.query.name
 
@@ -842,7 +843,7 @@ app.get("/picdLike", (req, res) => {
 });
 })})
 
-app.get("/toobig", (req, res) => {
+app.get("/wallpapers/toobig", (req, res) => {
   res.write(`<script> var player =  iframe.getElementById('player');
   player.mute();</script><h1>File too big, please limit files to less than 5mb</h1> <br><video loop class= width="auto" height="auto" poster="https://y.yarn.co/423fbe7f-0628-4dac-80fe-5c93979346e9_screenshot.jpg" autoplay="autoplay">
   <source id="" class="realsource" src="https://y.yarn.co/423fbe7f-0628-4dac-80fe-5c93979346e9.mp4?1596238325334" type="video/mp4">
@@ -861,11 +862,11 @@ app.get("*", (rq, rs) => {
 
 var counter = 0;
 app
-  .post("/upload/fileupload", function (req, res) {
+  .post("/wallpapers/upload/fileupload", function (req, res) {
     // date stamp var
     //  console.log(req);
 
-    if (req.url == "/upload/fileupload") {
+    if (req.url == "/wallpapers/upload/fileupload") {
       var d = new Date();
       const y = d.getFullYear();
       var m = d.getMonth() + 1;
@@ -972,7 +973,7 @@ app
 <body>
 <h1><a href="/">home</a></h1>` +
                 `<h2>Your wallpaper has been uploaded, it will show up on the 
-<a href="/">homepage</a> 
+<a href="/wallpapers/">homepage</a> 
 soon mate!</h2> <div id="newSlice">
 <img id="upPic" src=${newSlice}><a href=${newSlice}>${dinus}</a></img><br>Resolution: ${
                   dimensions.width + "x" + dimensions.height
