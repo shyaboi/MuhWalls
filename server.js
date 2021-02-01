@@ -785,7 +785,7 @@ app.get("/wallpapers/upload", (req, res) => {
   res.write('<link rel="stylesheet" href="/style.css">');
 
   res.write(
-    '<form action="wallpapers/upload/fileupload" id="upladContainer" method="post" enctype="multipart/form-data">'
+    '<form action="/wallpapers/upload/fileupload" id="upladContainer" method="post" enctype="multipart/form-data">'
   );
   res.write('<input type="file" name="filetoupload" id="fileChooseButt"><br>');
   res.write(
