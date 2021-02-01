@@ -871,11 +871,11 @@ app.get("*", (rq, rs) => {
 
 var counter = 0;
 app
-  .post("/upload/fileupload", function (req, res) {
+  .post("wallpapers/upload/fileupload", function (req, res) {
     // date stamp var
     //  console.log(req);
 
-    if (req.url == "/upload/fileupload") {
+    if (req.url == "wallpapers/upload/fileupload") {
       var d = new Date();
       const y = d.getFullYear();
       var m = d.getMonth() + 1;
@@ -980,7 +980,7 @@ app
     <link rel='stylesheet' href='/style.css' />
 </head>
 <body>
-<h1><a href="/">home</a></h1>` +
+<h1><a href="/wallpapers">home</a></h1>` +
                 `<h2>Your wallpaper has been uploaded, it will show up on the 
 <a href="/wallpapers/">homepage</a> 
 soon mate!</h2> <div id="newSlice">
