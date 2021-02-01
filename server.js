@@ -313,7 +313,7 @@ var bodyParser = require('body-parser');
 const { json } = require("body-parser");
 app.use(bodyParser.json()); // to support JSON bodies
 app.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bodies
-app.post("/like", (req, res) => { 
+app.post("/wallpapers/like", (req, res) => { 
   const okis = req.body.name
 
   const okys = okis
