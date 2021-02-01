@@ -776,16 +776,16 @@ app.get("/wallpapers/img+:keyword?", function (req, res) {
   getAll();
 });
 
-router.get(["/wallpapers/", "/wallpapers//*"], function (req, res, next) {
-  res.sendFile(path.join(__dirname, "index.html"));
-});
+// router.get(["/wallpapers/", "/wallpapers//*"], function (req, res, next) {
+//   res.sendFile(path.join(__dirname, "index.html"));
+// });
 
 app.get("/wallpapers/upload", (req, res) => {
   res.writeHead(200, { "Content-Type": "text/html" });
   res.write('<link rel="stylesheet" href="/style.css">');
 
   res.write(
-    '<form action="fileupload" id="upladContainer" method="post" enctype="multipart/form-data">'
+    '<form action="wallpapers/upload/fileupload" id="upladContainer" method="post" enctype="multipart/form-data">'
   );
   res.write('<input type="file" name="filetoupload" id="fileChooseButt"><br>');
   res.write(
@@ -855,7 +855,7 @@ app.get("/wallpapers/toobig", (req, res) => {
   res.write(`<script> var player =  iframe.getElementById('player');
   player.mute();</script><h1>File too big, please limit files to less than 5mb</h1> <br><video loop class= width="auto" height="auto" poster="https://y.yarn.co/423fbe7f-0628-4dac-80fe-5c93979346e9_screenshot.jpg" autoplay="autoplay">
   <source id="" class="realsource" src="https://y.yarn.co/423fbe7f-0628-4dac-80fe-5c93979346e9.mp4?1596238325334" type="video/mp4">
-</video><br> <h1><a href="/upload">Back to uploads page.</a></h1>`);
+</video><br> <h1><a href="/wallpapers/upload">Back to uploads page.</a></h1>`);
   return res.end();
 });
 
@@ -871,11 +871,11 @@ app.get("*", (rq, rs) => {
 
 var counter = 0;
 app
-  .post("/wallpapers/fileupload", function (req, res) {
+  .post("/wallpapers/upload/fileupload", function (req, res) {
     // date stamp var
     //  console.log(req);
 
-    if (req.url == "/wallpapers/fileupload") {
+    if (req.url == "/wallpapers/upload/fileupload") {
       var d = new Date();
       const y = d.getFullYear();
       var m = d.getMonth() + 1;
